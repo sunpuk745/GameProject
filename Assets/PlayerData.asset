@@ -15,9 +15,9 @@ MonoBehaviour:
   gravityStrength: -Infinity
   gravityScale: Infinity
   fallGravityMult: 1
-  maxFallSpeed: 0
-  fastFallGravityMult: 0
-  maxFastFallSpeed: 0
+  maxFallSpeed: 1
+  fastFallGravityMult: 1
+  maxFastFallSpeed: 1
   runMaxSpeed: 20
   runAcceleration: 0.01
   runAccelAmount: 0.024999999
