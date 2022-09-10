@@ -6,11 +6,15 @@ public class NewPlayerMovement : MonoBehaviour
 {
     [Header("Component")]
     private Rigidbody2D rb;
+    public Animator animator;
+
+    private bool isCrouched = false;
 
     [Header("Movement")]
     [SerializeField]private float movementAcceleration = 10f;
     [SerializeField]private float maxMoveSpeed = 10f;
-    [SerializeField]private float groundMovementDecceleration = 7f;
+    [SerializeField]private float groundMovementDeceleration = 7f;
+    private bool canMove = true;
     private float horizontalDirection;
 
     private bool IsFacingRight = true;
@@ -19,11 +23,17 @@ public class NewPlayerMovement : MonoBehaviour
 
     [Header("Jump")]
     [SerializeField] private float jumpForce = 12f;
-    [SerializeField] private float airDecceleration = 2.5f;
+    [SerializeField] private float airDeceleration = 2.5f;
     [SerializeField] private float fallMultiplier = 8f;
     [SerializeField] private float lowJumpFallMultipier = 5f;
     private bool canJump => Input.GetButtonDown("Jump") && onGround;
     [Space(5)]
+
+    [Header("Attack")]
+    [SerializeField] private float AttackForce = 10f;
+    private bool canAttack => Input.GetMouseButtonDown(0) && onGround;
+    [Space(5)]
+
 
     [Header("Ground Collision Variables")]
     [SerializeField] private Transform groundCheckPoint;
@@ -36,27 +46,39 @@ public class NewPlayerMovement : MonoBehaviour
 
     private void Start() 
     {
-        rb = GetComponent<Rigidbody2D>();    
+        rb = GetComponent<Rigidbody2D>();   
     }
 
     private void Update() 
     {
         CheckCollision();
         horizontalDirection = GetInput().x;
-        if (canJump) Jump();
+        animator.SetFloat("Speed", Mathf.Abs(horizontalDirection));
+        Crouch();
+        if ((canJump) && (!isCrouched))
+        {
+            Jump();
+
+        }
+        if ((canAttack) && (!isCrouched))
+        {
+            Attack();
+        }
         if (onGround)
         {
-            ApplyGroundDecceleration();
+            ApplyGroundDeceleration();
+            
         }
         else
         {
-            ApplyAirDecceleration();
+            animator.SetBool("IsJumping", true);
+            ApplyAirDeceleration();
             FallMultiplier();
         }
     }
 
     private void FixedUpdate() 
-    {   
+    {
         Move();
     }
 
@@ -67,25 +89,27 @@ public class NewPlayerMovement : MonoBehaviour
 
     private void Move()
     {
-        rb.AddForce(new Vector2(horizontalDirection, 0f) * movementAcceleration);
-
-        if (Mathf.Abs(rb.velocity.x) > maxMoveSpeed)
-        rb.velocity = new Vector2(Mathf.Sign(rb.velocity.x) * maxMoveSpeed, rb.velocity.y);
+        if (canMove)
+        {
+            rb.AddForce(new Vector2(horizontalDirection, 0f) * movementAcceleration);
+            if (Mathf.Abs(rb.velocity.x) > maxMoveSpeed)
+            rb.velocity = new Vector2(Mathf.Sign(rb.velocity.x) * maxMoveSpeed, rb.velocity.y);
+        }
         if(horizontalDirection > 0 && !IsFacingRight)
-        {
-            Turn();
-        }
-        if(horizontalDirection < 0 && IsFacingRight)
-        {
-            Turn();
-        }
+            {
+                Turn();
+            }
+            if(horizontalDirection < 0 && IsFacingRight)
+            {
+                Turn();
+            }
     }
 
-    private void ApplyGroundDecceleration()
+    private void ApplyGroundDeceleration()
     {
         if (Mathf.Abs(horizontalDirection) < 0.4f || changingDirection)
         {
-            rb.drag = groundMovementDecceleration;
+            rb.drag = groundMovementDeceleration;
         }
         else
         {
@@ -93,9 +117,9 @@ public class NewPlayerMovement : MonoBehaviour
         }
     }
 
-    private void ApplyAirDecceleration()
+    private void ApplyAirDeceleration()
     {
-        rb.drag = airDecceleration;
+        rb.drag = airDeceleration;
     }
 
     private void Turn() //Flip character Spirte
@@ -132,11 +156,38 @@ public class NewPlayerMovement : MonoBehaviour
     private void CheckCollision()
     {
         onGround = Physics2D.OverlapBox(groundCheckPoint.position, groundCheckSize, 0, groundLayer);
+        if (onGround){
+            animator.SetBool("IsJumping", false);
+        }
+        
     }
 
     private void OnDrawGizmosSelected()
     {
 		Gizmos.color = Color.green;
 		Gizmos.DrawWireCube(groundCheckPoint.position, groundCheckSize);
+    }
+
+    private void Attack()
+    {
+        animator.SetTrigger("Attack");
+    }
+
+    private void Crouch()
+    {
+        if(Input.GetButton("Crouch") && onGround)
+        {
+            isCrouched = true;
+            animator.SetBool("IsCrouching", true);
+            rb.velocity = new Vector2(0,0);
+            canMove = false;
+        }
+        else
+        {
+            isCrouched = false;
+            animator.SetBool("IsCrouching", false);
+            canMove = true;
+        }
+        
     }
 }
