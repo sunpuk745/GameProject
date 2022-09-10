@@ -1,24 +1,9 @@
-/*
-	Created by @DawnosaurDev at youtube.com/c/DawnosaurStudios
-	Thanks so much for checking this out and I hope you find it helpful! 
-	If you have any further queries, questions or feedback feel free to reach out on my twitter or leave a comment on youtube :D
-
-	Feel free to use this in your own games, and I'd love to see anything you make!
- */
-
 using System.Collections;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-	//Scriptable object which holds all the player's movement parameters. If you don't want to use it
-	//just paste in all the parameters, though you will need to manuly change all references in this script
-
-	//HOW TO: to add the scriptable object, right-click in the project window -> create -> Player Data
-	//Next, drag it into the slot in playerMovement on your player
-
-	public PlayerData Data;
-
+	public PlayerData Data; //Scriptable object
 	#region Variables
 	//Components
     public Rigidbody2D RB { get; private set; }
@@ -30,12 +15,21 @@ public class PlayerMovement : MonoBehaviour
 	public bool IsJumping { get; private set; }
 	public bool IsWallJumping { get; private set; }
 	public bool IsSliding { get; private set; }
+	private bool isDashing;
+
+	private float dashTimeLeft;
+	private float lastImageXPos;
+	private float lastDash = -100f;
 
 	//Timers (also all fields, could be private and a method returning a bool could be used)
 	public float LastOnGroundTime { get; private set; }
 	public float LastOnWallTime { get; private set; }
 	public float LastOnWallRightTime { get; private set; }
 	public float LastOnWallLeftTime { get; private set; }
+	public float dashTime;
+	public float dashSpeed;
+	public float distanceBetweenImgaes;
+	public float dashCoolDown;
 
 	//Jump
 	private bool _isJumpCut;
@@ -85,6 +79,7 @@ public class PlayerMovement : MonoBehaviour
 		#endregion
 
 		#region INPUT HANDLER
+		CheckDash();
 		_moveInput.x = Input.GetAxisRaw("Horizontal");
 		_moveInput.y = Input.GetAxisRaw("Vertical");
 
@@ -111,15 +106,15 @@ public class PlayerMovement : MonoBehaviour
 				LastOnGroundTime = Data.coyoteTime; //if so sets the lastGrounded to coyoteTime
             }		
 
-			//Right Wall Check
-			if (((Physics2D.OverlapBox(_frontWallCheckPoint.position, _wallCheckSize, 0, _groundLayer) && IsFacingRight)
-					|| (Physics2D.OverlapBox(_backWallCheckPoint.position, _wallCheckSize, 0, _groundLayer) && !IsFacingRight)) && !IsWallJumping)
-				LastOnWallRightTime = Data.coyoteTime;
+			// //Right Wall Check
+			// if (((Physics2D.OverlapBox(_frontWallCheckPoint.position, _wallCheckSize, 0, _groundLayer) && IsFacingRight)
+			// 		|| (Physics2D.OverlapBox(_backWallCheckPoint.position, _wallCheckSize, 0, _groundLayer) && !IsFacingRight)) && !IsWallJumping)
+			// 	LastOnWallRightTime = Data.coyoteTime;
 
-			//Right Wall Check
-			if (((Physics2D.OverlapBox(_frontWallCheckPoint.position, _wallCheckSize, 0, _groundLayer) && !IsFacingRight)
-				|| (Physics2D.OverlapBox(_backWallCheckPoint.position, _wallCheckSize, 0, _groundLayer) && IsFacingRight)) && !IsWallJumping)
-				LastOnWallLeftTime = Data.coyoteTime;
+			// //Right Wall Check
+			// if (((Physics2D.OverlapBox(_frontWallCheckPoint.position, _wallCheckSize, 0, _groundLayer) && !IsFacingRight)
+			// 	|| (Physics2D.OverlapBox(_backWallCheckPoint.position, _wallCheckSize, 0, _groundLayer) && IsFacingRight)) && !IsWallJumping)
+			// 	LastOnWallLeftTime = Data.coyoteTime;
 
 			//Two checks needed for both left and right walls since whenever the play turns the wall checkPoints swap sides
 			LastOnWallTime = Mathf.Max(LastOnWallLeftTime, LastOnWallRightTime);
@@ -157,26 +152,26 @@ public class PlayerMovement : MonoBehaviour
 			_isJumpFalling = false;
 			Jump();
 		}
-		//WALL JUMP
-		else if (CanWallJump() && LastPressedJumpTime > 0)
-		{
-			IsWallJumping = true;
-			IsJumping = false;
-			_isJumpCut = false;
-			_isJumpFalling = false;
-			_wallJumpStartTime = Time.time;
-			_lastWallJumpDir = (LastOnWallRightTime > 0) ? -1 : 1;
+		// //WALL JUMP
+		// else if (CanWallJump() && LastPressedJumpTime > 0)
+		// {
+		// 	IsWallJumping = true;
+		// 	IsJumping = false;
+		// 	_isJumpCut = false;
+		// 	_isJumpFalling = false;
+		// 	_wallJumpStartTime = Time.time;
+		// 	_lastWallJumpDir = (LastOnWallRightTime > 0) ? -1 : 1;
 			
-			WallJump(_lastWallJumpDir);
-		}
+		// 	WallJump(_lastWallJumpDir);
+		// }
 		#endregion
 
-		#region SLIDE CHECKS
-		if (CanSlide() && ((LastOnWallLeftTime > 0 && _moveInput.x < 0) || (LastOnWallRightTime > 0 && _moveInput.x > 0)))
-			IsSliding = true;
-		else
-			IsSliding = false;
-		#endregion
+		// #region SLIDE CHECKS
+		// if (CanSlide() && ((LastOnWallLeftTime > 0 && _moveInput.x < 0) || (LastOnWallRightTime > 0 && _moveInput.x > 0)))
+		// 	IsSliding = true;
+		// else
+		// 	IsSliding = false;
+		// #endregion
 
 		#region GRAVITY
 		//Higher gravity if we've released the jump input or are falling
@@ -223,10 +218,6 @@ public class PlayerMovement : MonoBehaviour
 			Run(Data.wallJumpRunLerp);
 		else
 			Run(1);
-
-		//Handle Slide
-		if (IsSliding)
-			Slide();
     }
 
     #region INPUT CALLBACKS
@@ -305,6 +296,43 @@ public class PlayerMovement : MonoBehaviour
 		*/
 	}
 
+	private void CheckInput()
+	{
+		if(Input.GetButtonDown("Dash"))
+		{
+			if(Time.time >= (lastDash + dashCoolDown))
+			AttemptToDash();
+		}
+	}
+
+	private void AttemptToDash()
+	{
+		isDashing = true;
+		dashTimeLeft = dashTime;
+		lastDash = Time.time;
+
+		PlayerAfterImagePool.Instance.GetFromPool();
+		lastImageXPos = transform.position.x;
+	}
+
+	private void CheckDash()
+	{
+		if(isDashing)
+		{
+			if(dashTimeLeft > 0)
+			{
+				RB.velocity = new Vector2(dashSpeed * _moveInput.x, RB.velocity.y);
+				dashTimeLeft -= Time.deltaTime;
+
+				if(Mathf.Abs(transform.position.x - lastImageXPos) > distanceBetweenImgaes)
+				{
+					PlayerAfterImagePool.Instance.GetFromPool();
+					lastImageXPos = transform.position.x;
+				}
+			}
+		}
+	}
+
 	private void Turn()
 	{
 		//stores scale and flips the player along the x axis, 
@@ -360,22 +388,6 @@ public class PlayerMovement : MonoBehaviour
 	}
 	#endregion
 
-	#region OTHER MOVEMENT METHODS
-	private void Slide()
-	{
-		//Works the same as the Run but only in the y-axis
-		//THis seems to work fine, buit maybe you'll find a better way to implement a slide into this system
-		float speedDif = Data.slideSpeed - RB.velocity.y;	
-		float movement = speedDif * Data.slideAccel;
-		//So, we clamp the movement here to prevent any over corrections (these aren't noticeable in the Run)
-		//The force applied can't be greater than the (negative) speedDifference * by how many times a second FixedUpdate() is called. For more info research how force are applied to rigidbodies.
-		movement = Mathf.Clamp(movement, -Mathf.Abs(speedDif)  * (1 / Time.fixedDeltaTime), Mathf.Abs(speedDif) * (1 / Time.fixedDeltaTime));
-
-		RB.AddForce(movement * Vector2.up);
-	}
-    #endregion
-
-
     #region CHECK METHODS
     public void CheckDirectionToFace(bool isMovingRight)
 	{
@@ -404,13 +416,13 @@ public class PlayerMovement : MonoBehaviour
 		return IsWallJumping && RB.velocity.y > 0;
 	}
 
-	public bool CanSlide()
-    {
-		if (LastOnWallTime > 0 && !IsJumping && !IsWallJumping && LastOnGroundTime <= 0)
-			return true;
-		else
-			return false;
-	}
+	// public bool CanSlide()
+    // {
+	// 	if (LastOnWallTime > 0 && !IsJumping && !IsWallJumping && LastOnGroundTime <= 0)
+	// 		return true;
+	// 	else
+	// 		return false;
+	// }
     #endregion
 
 
@@ -426,4 +438,3 @@ public class PlayerMovement : MonoBehaviour
     #endregion
 }
 
-// created by Dawnosaur :D
