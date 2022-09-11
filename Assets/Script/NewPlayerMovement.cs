@@ -32,6 +32,7 @@ public class NewPlayerMovement : MonoBehaviour
     [Header("Attack")]
     [SerializeField] private float AttackForce = 10f;
     private bool canAttack => Input.GetMouseButtonDown(0) && onGround;
+    private bool isAttacking = false;
     [Space(5)]
 
 
