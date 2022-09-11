@@ -171,6 +171,7 @@ public class NewPlayerMovement : MonoBehaviour
     private void Attack()
     {
         animator.SetTrigger("Attack");
+
     }
 
     private void Crouch()
