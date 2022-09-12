@@ -1,13 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.InputSystem;
 public class NewPlayerMovement : MonoBehaviour
 {
     [Header("Component")]
     private Rigidbody2D rb;
     public Animator animator;
-
+    public bool fallThrough => Input.GetKey(KeyCode.S);
     private bool isCrouched = false;
 
     [Header("Movement")]
@@ -35,6 +35,11 @@ public class NewPlayerMovement : MonoBehaviour
     private bool isAttacking = false;
     [Space(5)]
 
+    [Header("ParticleEffect")]
+    [SerializeField] public ParticleSystem footsteps;
+    [SerializeField] private ParticleSystem.EmissionModule footEmission;
+    
+    [Space(5)]
 
     [Header("Ground Collision Variables")]
     [SerializeField] private Transform groundCheckPoint;
@@ -48,6 +53,7 @@ public class NewPlayerMovement : MonoBehaviour
     private void Start() 
     {
         rb = GetComponent<Rigidbody2D>();   
+        footEmission = footsteps.emission;
     }
 
     private void Update() 
@@ -65,6 +71,7 @@ public class NewPlayerMovement : MonoBehaviour
         {
             Attack();
         }
+        
         if (onGround)
         {
             ApplyGroundDeceleration();
@@ -72,6 +79,7 @@ public class NewPlayerMovement : MonoBehaviour
         }
         else
         {
+            footEmission.rateOverTime = 0f;
             animator.SetBool("IsJumping", true);
             ApplyAirDeceleration();
             FallMultiplier();
@@ -86,6 +94,8 @@ public class NewPlayerMovement : MonoBehaviour
     private Vector2 GetInput()
     {
         return new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        
+        
     }
 
     private void Move()
@@ -95,6 +105,14 @@ public class NewPlayerMovement : MonoBehaviour
             rb.AddForce(new Vector2(horizontalDirection, 0f) * movementAcceleration);
             if (Mathf.Abs(rb.velocity.x) > maxMoveSpeed)
             rb.velocity = new Vector2(Mathf.Sign(rb.velocity.x) * maxMoveSpeed, rb.velocity.y);
+            if(Input.GetAxisRaw("Horizontal") != 0)
+            {
+                footEmission.rateOverTime = 35f;
+            }
+            else{
+                footEmission.rateOverTime = 0f;
+            }
+            
         }
         if(horizontalDirection > 0 && !IsFacingRight)
             {
@@ -104,6 +122,7 @@ public class NewPlayerMovement : MonoBehaviour
             {
                 Turn();
             }
+        
     }
 
     private void ApplyGroundDeceleration()
@@ -180,6 +199,7 @@ public class NewPlayerMovement : MonoBehaviour
         if(Input.GetButton("Crouch") && onGround)
         {
             isCrouched = true;
+            footEmission.rateOverTime = 0f;
             animator.SetBool("IsCrouching", true);
             rb.velocity = new Vector2(0,0);
             canMove = false;
@@ -192,4 +212,7 @@ public class NewPlayerMovement : MonoBehaviour
         }
         
     }
+
+    //show Dust trail effect
+
 }
