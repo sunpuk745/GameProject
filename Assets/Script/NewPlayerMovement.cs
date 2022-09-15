@@ -16,7 +16,6 @@ public class NewPlayerMovement : MonoBehaviour
     [SerializeField]private float groundMovementDeceleration = 7f;
     private bool canMove = true;
     private float horizontalDirection;
-
     private bool IsFacingRight = true;
     private bool changingDirection => (rb.velocity.x > 0f && horizontalDirection < 0f) || (rb.velocity.x < 0f && horizontalDirection > 0f);
     [Space(5)]
@@ -30,15 +29,14 @@ public class NewPlayerMovement : MonoBehaviour
     [Space(5)]
 
     [Header("Attack")]
-    [SerializeField] private float AttackForce = 10f;
+    [SerializeField] private float canAttackPerSecond = 2f;
+    float nextAttackTime = 0f;
     private bool canAttack => Input.GetMouseButtonDown(0) && onGround;
-    private bool isAttacking = false;
     [Space(5)]
 
     [Header("ParticleEffect")]
     [SerializeField] public ParticleSystem footsteps;
     [SerializeField] private ParticleSystem.EmissionModule footEmission;
-    
     [Space(5)]
 
     [Header("Ground Collision Variables")]
@@ -62,20 +60,18 @@ public class NewPlayerMovement : MonoBehaviour
         horizontalDirection = GetInput().x;
         animator.SetFloat("Speed", Mathf.Abs(horizontalDirection));
         Crouch();
-        if ((canJump) && (!isCrouched))
-        {
-            Jump();
-
-        }
         if ((canAttack) && (!isCrouched))
         {
             Attack();
+        }
+        if ((canJump) && (!isCrouched))
+        {
+            Jump();
         }
         
         if (onGround)
         {
             ApplyGroundDeceleration();
-            
         }
         else
         {
@@ -142,12 +138,11 @@ public class NewPlayerMovement : MonoBehaviour
         rb.drag = airDeceleration;
     }
 
-    private void Turn() //Flip character Spirte
+    private void Turn()
 	{
 		Vector3 scale = transform.localScale; 
 		scale.x *= -1;
 		transform.localScale = scale;
-
 		IsFacingRight = !IsFacingRight;
 	}
     
@@ -190,8 +185,11 @@ public class NewPlayerMovement : MonoBehaviour
 
     private void Attack()
     {
-        animator.SetTrigger("Attack");
-
+        if (Time.time >= nextAttackTime)
+        {
+            animator.SetTrigger("Attack");
+            nextAttackTime = Time.time + 1f / canAttackPerSecond;
+        }
     }
 
     private void Crouch()
@@ -212,7 +210,5 @@ public class NewPlayerMovement : MonoBehaviour
         }
         
     }
-
-    //show Dust trail effect
 
 }

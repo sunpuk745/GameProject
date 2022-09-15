@@ -738,7 +738,7 @@ MonoBehaviour:
   airDeceleration: 2.5
   fallMultiplier: 5
   lowJumpFallMultipier: 5
-  AttackForce: 10
+  canAttackPerSecond: 2
   footsteps: {fileID: 1324321219}
   groundCheckPoint: {fileID: 926532092}
   groundCheckSize: {x: 0.49, y: 0.03}
@@ -2141,7 +2141,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 1, b: 1, a: 1}
+      maxColor: {r: 0.7169812, g: 0.6391203, b: 0.49715206, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
