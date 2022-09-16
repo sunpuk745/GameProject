@@ -7,10 +7,13 @@ public class NewPlayerMovement : MonoBehaviour
     [Header("Component")]
     private Rigidbody2D rb;
     public Animator animator;
-    public bool fallThrough => Input.GetKey(KeyCode.S);
     private bool isCrouched = false;
+    //Teleporter
     private GameObject currentTeleporter;
+    // InteractableObejct
     public GameObject interactable;
+    //One-way platform
+    public bool fallThrough => Input.GetKey(KeyCode.S);
 
     [Header("Movement")]
     [SerializeField]private float movementAcceleration = 10f;
@@ -20,7 +23,7 @@ public class NewPlayerMovement : MonoBehaviour
     private float horizontalDirection;
     private bool IsFacingRight = true;
     private bool changingDirection => (rb.velocity.x > 0f && horizontalDirection < 0f) || (rb.velocity.x < 0f && horizontalDirection > 0f);
-    [Space(5)]
+    [Space(3)]
 
     [Header("Jump")]
     [SerializeField] private float jumpForce = 12f;
@@ -28,18 +31,25 @@ public class NewPlayerMovement : MonoBehaviour
     [SerializeField] private float fallMultiplier = 8f;
     [SerializeField] private float lowJumpFallMultipier = 5f;
     private bool canJump => Input.GetButtonDown("Jump") && onGround;
-    [Space(5)]
+    [Space(3)]
 
     [Header("Attack")]
     [SerializeField] private float canAttackPerSecond = 2f;
     float nextAttackTime = 0f;
     private bool canAttack => Input.GetMouseButtonDown(0) && onGround;
-    [Space(5)]
+    [Space(3)]
 
     [Header("ParticleEffect")]
+    // To use ParticleEffect(walk particle) : footEmission.rateOverTime = 0f; set it to 0f to disable and increase value to enable particle
     [SerializeField] public ParticleSystem footsteps;
     [SerializeField] private ParticleSystem.EmissionModule footEmission;
-    [Space(5)]
+    [Space(3)]
+
+    [Header("Camera Shake")]
+    // To use Camera Shake : CinemachineShake.Instance.ShakeCamera(intensity, shakeTime);
+    [SerializeField] private float intensity = 5f;
+    [SerializeField] private float shakeTime = 0.3f;
+    [Space(3)]
 
     [Header("Ground Collision Variables")]
     [SerializeField] private Transform groundCheckPoint;
@@ -65,6 +75,7 @@ public class NewPlayerMovement : MonoBehaviour
         if ((canAttack) && (!isCrouched))
         {
             Attack();
+            
         }
         if ((canJump) && (!isCrouched))
         {
@@ -163,6 +174,7 @@ public class NewPlayerMovement : MonoBehaviour
     {
         rb.velocity = new Vector2(rb.velocity.x , 0f);
         rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        
     }
 
     private void FallMultiplier()
@@ -203,7 +215,9 @@ public class NewPlayerMovement : MonoBehaviour
         if (Time.time >= nextAttackTime)
         {
             animator.SetTrigger("Attack");
+            CinemachineShake.Instance.ShakeCamera(intensity, shakeTime);
             nextAttackTime = Time.time + 1f / canAttackPerSecond;
+            
         }
     }
 
