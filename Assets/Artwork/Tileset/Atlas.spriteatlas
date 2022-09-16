@@ -82,11 +82,8 @@ SpriteAtlas:
   - {fileID: 1425890412, guid: fb82352ec6e52f34b97e57514c059641, type: 3}
   - {fileID: -1880532974, guid: fb82352ec6e52f34b97e57514c059641, type: 3}
   - {fileID: -22781506, guid: fb82352ec6e52f34b97e57514c059641, type: 3}
-  - {fileID: 1556553867, guid: fb82352ec6e52f34b97e57514c059641, type: 3}
-  - {fileID: 716256550, guid: fb82352ec6e52f34b97e57514c059641, type: 3}
   - {fileID: 798056097, guid: fb82352ec6e52f34b97e57514c059641, type: 3}
   - {fileID: -1275608450, guid: fb82352ec6e52f34b97e57514c059641, type: 3}
-  - {fileID: 1345716153, guid: fb82352ec6e52f34b97e57514c059641, type: 3}
   - {fileID: 1257555115, guid: fb82352ec6e52f34b97e57514c059641, type: 3}
   - {fileID: -893884261, guid: fb82352ec6e52f34b97e57514c059641, type: 3}
   - {fileID: -449725537, guid: fb82352ec6e52f34b97e57514c059641, type: 3}
@@ -107,7 +104,6 @@ SpriteAtlas:
   - {fileID: 613655554, guid: fb82352ec6e52f34b97e57514c059641, type: 3}
   - {fileID: 1699995734, guid: fb82352ec6e52f34b97e57514c059641, type: 3}
   - {fileID: -261972042, guid: fb82352ec6e52f34b97e57514c059641, type: 3}
-  - {fileID: 797749325, guid: fb82352ec6e52f34b97e57514c059641, type: 3}
   - {fileID: -1613741392, guid: fb82352ec6e52f34b97e57514c059641, type: 3}
   - {fileID: 1568676374, guid: fb82352ec6e52f34b97e57514c059641, type: 3}
   - {fileID: -1417821872, guid: fb82352ec6e52f34b97e57514c059641, type: 3}
@@ -233,11 +229,8 @@ SpriteAtlas:
   - oak_woods_tileset_53
   - oak_woods_tileset_43
   - oak_woods_tileset_42
-  - oak_woods_tileset_78
-  - oak_woods_tileset_89
   - oak_woods_tileset_41
   - oak_woods_tileset_79
-  - oak_woods_tileset_88
   - oak_woods_tileset_40
   - oak_woods_tileset_10
   - oak_woods_tileset_58
@@ -258,7 +251,6 @@ SpriteAtlas:
   - oak_woods_tileset_76
   - oak_woods_tileset_64
   - oak_woods_tileset_17
-  - oak_woods_tileset_77
   - oak_woods_tileset_67
   - oak_woods_tileset_74
   - oak_woods_tileset_66
