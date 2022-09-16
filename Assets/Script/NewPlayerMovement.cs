@@ -9,6 +9,8 @@ public class NewPlayerMovement : MonoBehaviour
     public Animator animator;
     public bool fallThrough => Input.GetKey(KeyCode.S);
     private bool isCrouched = false;
+    private GameObject currentTeleporter;
+    public GameObject interactable;
 
     [Header("Movement")]
     [SerializeField]private float movementAcceleration = 10f;
@@ -68,6 +70,15 @@ public class NewPlayerMovement : MonoBehaviour
         {
             Jump();
         }
+
+        // Teleport
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (currentTeleporter != null)
+            {
+                transform.position = currentTeleporter.GetComponent<Teleporter>().GetDestination().position;
+            }
+        }
         
         if (onGround)
         {
@@ -94,6 +105,7 @@ public class NewPlayerMovement : MonoBehaviour
         
     }
 
+    // Move
     private void Move()
     {
         if (canMove)
@@ -146,6 +158,7 @@ public class NewPlayerMovement : MonoBehaviour
 		IsFacingRight = !IsFacingRight;
 	}
     
+    // Jump
     private void Jump()
     {
         rb.velocity = new Vector2(rb.velocity.x , 0f);
@@ -168,6 +181,7 @@ public class NewPlayerMovement : MonoBehaviour
         }
     }
 
+    // Ground Check
     private void CheckCollision()
     {
         onGround = Physics2D.OverlapBox(groundCheckPoint.position, groundCheckSize, 0, groundLayer);
@@ -183,6 +197,7 @@ public class NewPlayerMovement : MonoBehaviour
 		Gizmos.DrawWireCube(groundCheckPoint.position, groundCheckSize);
     }
 
+    // Attack
     private void Attack()
     {
         if (Time.time >= nextAttackTime)
@@ -192,6 +207,7 @@ public class NewPlayerMovement : MonoBehaviour
         }
     }
 
+    // Crouch
     private void Crouch()
     {
         if(Input.GetButton("Crouch") && onGround)
@@ -209,6 +225,27 @@ public class NewPlayerMovement : MonoBehaviour
             canMove = true;
         }
         
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        //Teleport
+        if (collision.CompareTag("Teleporter"))
+        {
+            interactable.SetActive(true);
+            currentTeleporter = collision.gameObject;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        //Teleport
+        if (collision.CompareTag("Teleporter"))
+        {
+            if (collision.gameObject == currentTeleporter)
+            currentTeleporter = null;
+            interactable.SetActive(false);
+        }
     }
 
 }
