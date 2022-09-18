@@ -994,9 +994,14 @@ MonoBehaviour:
   airDeceleration: 2.5
   fallMultiplier: 5
   lowJumpFallMultipier: 5
-  canAttackPerSecond: 2
+  attackingTime: 0.3
+  attackCooldown: 0.5
+  rollForce: 10
+  maxRollSpeed: 16
+  rollingTime: 0.43
+  rollingCooldown: 0.1
   footsteps: {fileID: 1324321219}
-  intensity: 5
+  intensity: 10
   shakeTime: 0.3
   groundCheckPoint: {fileID: 926532092}
   groundCheckSize: {x: 0.49, y: 0.03}
