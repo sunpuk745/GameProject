@@ -34,9 +34,19 @@ public class NewPlayerMovement : MonoBehaviour
     [Space(3)]
 
     [Header("Attack")]
-    [SerializeField] private float canAttackPerSecond = 2f;
-    float nextAttackTime = 0f;
-    private bool canAttack => Input.GetMouseButtonDown(0) && onGround;
+    [SerializeField] private float attackingTime = 2f;
+    [SerializeField] private float attackCooldown = 1f;
+    private bool canAttack = true;
+    private bool isAttacking;
+    [Space(3)]
+
+    [Header("Roll")]
+    [SerializeField] private float rollForce = 15f;
+    [SerializeField] private float maxRollSpeed = 16f;
+    [SerializeField] private float rollingTime = 0.2f;
+    [SerializeField] private float rollingCooldown = 1f;
+    private bool canRoll = true;
+    private bool isRolling;
     [Space(3)]
 
     [Header("ParticleEffect")]
@@ -68,18 +78,30 @@ public class NewPlayerMovement : MonoBehaviour
 
     private void Update() 
     {
+        if(isRolling)
+        {
+            return;
+        }
+        if(isAttacking)
+        {
+            return;
+        }
+        
         CheckCollision();
         horizontalDirection = GetInput().x;
         animator.SetFloat("Speed", Mathf.Abs(horizontalDirection));
         Crouch();
-        if ((canAttack) && (!isCrouched))
+        if (Input.GetMouseButtonDown(0) && canAttack && onGround)
         {
-            Attack();
-            
+            StartCoroutine(Attack());
         }
         if ((canJump) && (!isCrouched))
         {
             Jump();
+        }
+        if (Input.GetButtonUp("Dash") && canRoll && onGround)
+        {
+            StartCoroutine(Roll());
         }
 
         // Teleport
@@ -106,6 +128,15 @@ public class NewPlayerMovement : MonoBehaviour
 
     private void FixedUpdate() 
     {
+        if (isRolling)
+        {
+            return;
+        }
+        if(isAttacking)
+        {
+            return;
+        }
+
         Move();
     }
 
@@ -209,18 +240,6 @@ public class NewPlayerMovement : MonoBehaviour
 		Gizmos.DrawWireCube(groundCheckPoint.position, groundCheckSize);
     }
 
-    // Attack
-    private void Attack()
-    {
-        if (Time.time >= nextAttackTime)
-        {
-            animator.SetTrigger("Attack");
-            CinemachineShake.Instance.ShakeCamera(intensity, shakeTime);
-            nextAttackTime = Time.time + 1f / canAttackPerSecond;
-            
-        }
-    }
-
     // Crouch
     private void Crouch()
     {
@@ -239,6 +258,39 @@ public class NewPlayerMovement : MonoBehaviour
             canMove = true;
         }
         
+    }
+
+// Attack
+    private IEnumerator Attack()
+    {
+        canAttack = false;
+        isAttacking = true;
+        rb.velocity = new Vector2(0,0);
+        animator.SetTrigger("Attack");
+        CinemachineShake.Instance.ShakeCamera(intensity, shakeTime);
+        yield return new WaitForSeconds(attackingTime);
+        isAttacking = false;
+        yield return new WaitForSeconds(attackCooldown);
+        canAttack = true;
+    }
+    
+    // Roll
+    // Problem : when roll after running, it will multiply dash power and make it roll farther than it should be.
+    // tried : change Movement Acceleration, max movement speed and set Vector2 to 0 is not help. but for sure, the problem not lies within the Roll script
+    private IEnumerator Roll()
+    {
+        canRoll = false;
+        isRolling = true;
+
+        animator.SetBool("IsRolling", true);
+
+        rb.velocity = new Vector2(transform.localScale.x * rollForce, 0f);
+        
+        yield return new WaitForSeconds(rollingTime);
+        isRolling = false;
+        animator.SetBool("IsRolling", false);
+        yield return new WaitForSeconds(rollingCooldown);
+        canRoll = true;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
