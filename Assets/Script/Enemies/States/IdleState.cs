@@ -8,6 +8,7 @@ public class IdleState : State
 
     protected bool TurnAfterIdle;
     protected bool isIdleTimeOver;
+    protected bool isPlayerInMinAggroRange;
 
     protected float idleTime;
 
@@ -22,6 +23,7 @@ public class IdleState : State
 
         entity.SetVelocity(0f);
         isIdleTimeOver = false;
+        isPlayerInMinAggroRange = entity.CheckPlayerInMinAggroRange();
         SetRandomIdleTime();
     }
 
@@ -48,6 +50,7 @@ public class IdleState : State
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
+        isPlayerInMinAggroRange = entity.CheckPlayerInMinAggroRange();
     }
 
     public void SetTurnAfterIdle(bool turn)

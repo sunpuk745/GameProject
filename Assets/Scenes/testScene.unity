@@ -224,10 +224,6 @@ MonoBehaviour:
   lowJumpFallMultipier: 5
   attackingTime: 0.3
   attackCooldown: 0.5
-  rollForce: 10
-  maxRollSpeed: 16
-  rollingTime: 0.43
-  rollingCooldown: 0.1
   footsteps: {fileID: 887357401}
   intensity: 10
   shakeTime: 0.3
@@ -317,7 +313,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 216019143}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LedgeCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8019,6 +8015,37 @@ Transform:
   m_Father: {fileID: 53698610}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!1 &917743244
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 917743245}
+  m_Layer: 8
+  m_Name: PlayerCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &917743245
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 917743244}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.003, y: -0.019, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1205956649}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1182068618
 GameObject:
   m_ObjectHideFlags: 0
@@ -8116,7 +8143,7 @@ GameObject:
   - component: {fileID: 1205956652}
   - component: {fileID: 1205956651}
   - component: {fileID: 1205956650}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Alive
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8137,6 +8164,7 @@ Transform:
   m_Children:
   - {fileID: 216019143}
   - {fileID: 2053982282}
+  - {fileID: 917743245}
   m_Father: {fileID: 1891312159}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8674,7 +8702,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1891312159}
   - component: {fileID: 1891312158}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Enemy1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8696,8 +8724,10 @@ MonoBehaviour:
   entityData: {fileID: 11400000, guid: 09b556820e9a4ba4a805c34a866389a0, type: 2}
   wallCheck: {fileID: 2053982282}
   ledgeCheck: {fileID: 216019143}
+  playerCheck: {fileID: 917743245}
   idleStateData: {fileID: 11400000, guid: a2b9a525a6d7ba74b992de6b10275ca4, type: 2}
   moveStateData: {fileID: 11400000, guid: 8f1d570e8b9797f469de48d2898166a4, type: 2}
+  playerDetectedData: {fileID: 11400000, guid: de8c070e87b022c40836f77a9d11b753, type: 2}
 --- !u!4 &1891312159
 Transform:
   m_ObjectHideFlags: 0
@@ -8723,7 +8753,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2053982282}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: WallCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}

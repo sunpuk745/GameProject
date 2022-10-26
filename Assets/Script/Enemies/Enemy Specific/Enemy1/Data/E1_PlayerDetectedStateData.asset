@@ -9,16 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b045fb9cc0d966545ae6de31f711376e, type: 3}
-  m_Name: E1_BaseData
+  m_Script: {fileID: 11500000, guid: d7ce70a060a55ca40880d5a200d49ce7, type: 3}
+  m_Name: E1_PlayerDetectedStateData
   m_EditorClassIdentifier: 
-  wallCheckDistance: 0.4
-  ledgeCheckDistance: 0.3
-  minAggroDistance: 2
-  maxAggroDistance: 4
-  Ground:
-    serializedVersion: 2
-    m_Bits: 64
-  Player:
-    serializedVersion: 2
-    m_Bits: 8

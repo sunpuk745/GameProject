@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class E1_IdleState : IdleState
+public class E1_PlayerDetectedState : PlayerDetectedState
 {
     private Enemy1 enemy;
 
-    public E1_IdleState(Entity entity, FiniteStateMachine stateMachine, string animBoolName, Data_IdleState stateData,Enemy1 enemy) : base(entity, stateMachine, animBoolName, stateData)
+    public E1_PlayerDetectedState(Entity entity, FiniteStateMachine stateMachine, string animBoolName, Data_PlayerDetected stateData, Enemy1 enemy) : base(entity, stateMachine, animBoolName, stateData)
     {
         this.enemy = enemy;
     }
@@ -25,13 +25,10 @@ public class E1_IdleState : IdleState
     {
         base.LogicUpdate();
 
-        if (isPlayerInMinAggroRange)
+        if (!isPlayerInMaxAggroRange)
         {
-            stateMachine.ChangeState(enemy.playerDetectedState);
-        }
-        else if (isIdleTimeOver)
-        {
-            stateMachine.ChangeState(enemy.moveState);
+            enemy.idleState.SetTurnAfterIdle(false);
+            stateMachine.ChangeState(enemy.idleState);
         }
     }
 
