@@ -23,7 +23,6 @@ public class NewPlayerMovement : MonoBehaviour
     private float horizontalDirection;
     private bool IsFacingRight = true;
     private bool changingDirection => (rb.velocity.x > 0f && horizontalDirection < 0f) || (rb.velocity.x < 0f && horizontalDirection > 0f);
-    [Space(3)]
 
     [Header("Jump")]
     [SerializeField] private float jumpForce = 12f;
@@ -31,35 +30,22 @@ public class NewPlayerMovement : MonoBehaviour
     [SerializeField] private float fallMultiplier = 8f;
     [SerializeField] private float lowJumpFallMultipier = 5f;
     private bool canJump => Input.GetButtonDown("Jump") && onGround;
-    [Space(3)]
 
     [Header("Attack")]
     [SerializeField] private float attackingTime = 2f;
     [SerializeField] private float attackCooldown = 1f;
     private bool canAttack = true;
     private bool isAttacking;
-    [Space(3)]
-
-    [Header("Roll")]
-    [SerializeField] private float rollForce = 15f;
-    [SerializeField] private float maxRollSpeed = 16f;
-    [SerializeField] private float rollingTime = 0.2f;
-    [SerializeField] private float rollingCooldown = 1f;
-    private bool canRoll = true;
-    private bool isRolling;
-    [Space(3)]
 
     [Header("ParticleEffect")]
     // To use ParticleEffect(walk particle) : footEmission.rateOverTime = 0f; set it to 0f to disable and increase value to enable particle
     [SerializeField] public ParticleSystem footsteps;
     [SerializeField] private ParticleSystem.EmissionModule footEmission;
-    [Space(3)]
 
     [Header("Camera Shake")]
     // To use Camera Shake : CinemachineShake.Instance.ShakeCamera(intensity, shakeTime);
     [SerializeField] private float intensity = 5f;
     [SerializeField] private float shakeTime = 0.3f;
-    [Space(3)]
 
     [Header("Ground Collision Variables")]
     [SerializeField] private Transform groundCheckPoint;
@@ -78,10 +64,7 @@ public class NewPlayerMovement : MonoBehaviour
 
     private void Update() 
     {
-        if(isRolling)
-        {
-            return;
-        }
+ 
         if(isAttacking)
         {
             return;
@@ -98,10 +81,6 @@ public class NewPlayerMovement : MonoBehaviour
         if ((canJump) && (!isCrouched))
         {
             Jump();
-        }
-        if (Input.GetButtonUp("Dash") && canRoll && onGround)
-        {
-            StartCoroutine(Roll());
         }
 
         // Teleport
@@ -128,10 +107,6 @@ public class NewPlayerMovement : MonoBehaviour
 
     private void FixedUpdate() 
     {
-        if (isRolling)
-        {
-            return;
-        }
         if(isAttacking)
         {
             return;
@@ -272,25 +247,6 @@ public class NewPlayerMovement : MonoBehaviour
         isAttacking = false;
         yield return new WaitForSeconds(attackCooldown);
         canAttack = true;
-    }
-    
-    // Roll
-    // Problem : when roll after running, it will multiply dash power and make it roll farther than it should be.
-    // tried : change Movement Acceleration, max movement speed and set Vector2 to 0 is not help. but for sure, the problem not lies within the Roll script
-    private IEnumerator Roll()
-    {
-        canRoll = false;
-        isRolling = true;
-
-        animator.SetBool("IsRolling", true);
-
-        rb.velocity = new Vector2(transform.localScale.x * rollForce, 0f);
-        
-        yield return new WaitForSeconds(rollingTime);
-        isRolling = false;
-        animator.SetBool("IsRolling", false);
-        yield return new WaitForSeconds(rollingCooldown);
-        canRoll = true;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
