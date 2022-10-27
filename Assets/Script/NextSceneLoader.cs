@@ -7,6 +7,6 @@ public class NextSceneLoader : MonoBehaviour
 {
     void OnEnable()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene("SampleScene", LoadSceneMode.Single);
     }
 }
