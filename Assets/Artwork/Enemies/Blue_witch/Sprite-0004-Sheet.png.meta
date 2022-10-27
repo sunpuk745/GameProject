@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a8d93fff0d035ad4190241a40c4c3385
+guid: e4c81a3ff96c261438ff23b4df35c6ec
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -117,190 +117,64 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: B_witch_attack_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 368
-        width: 104
-        height: 46
-      alignment: 9
-      pivot: {x: 0.2, y: 0.6}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c2b457313db987c40a79ab25d365c668
-      internalID: -319865958
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: B_witch_attack_1
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 322
-        width: 104
-        height: 46
-      alignment: 9
-      pivot: {x: 0.2, y: 0.6}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1e4011de6888298469a3fe2f224731f6
-      internalID: -1840151929
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: B_witch_attack_2
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 276
-        width: 104
-        height: 46
-      alignment: 9
-      pivot: {x: 0.2, y: 0.6}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4d4d2d8acc85c694fa15aeb42aacd8bf
-      internalID: 622791481
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: B_witch_attack_3
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 230
-        width: 104
-        height: 46
-      alignment: 9
-      pivot: {x: 0.2, y: 0.6}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b7a1c875bb88f48478f6aafbdad44a4a
-      internalID: -2008776902
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: B_witch_attack_4
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 184
-        width: 104
-        height: 46
-      alignment: 9
-      pivot: {x: 0.2, y: 0.6}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a1f4f20d1a83ec84aa3b63db3c9a44e4
-      internalID: -160218086
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: B_witch_attack_5
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 138
-        width: 104
-        height: 46
-      alignment: 9
-      pivot: {x: 0.2, y: 0.6}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 085a3ed74a012c6428dbbe0b1570d2d3
-      internalID: 319536911
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: B_witch_attack_6
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 92
-        width: 104
-        height: 46
-      alignment: 9
-      pivot: {x: 0.2, y: 0.6}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2528c1b46950ee743be54f5f0a1ac426
-      internalID: 2073616147
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: B_witch_attack_7
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 46
-        width: 104
-        height: 46
-      alignment: 9
-      pivot: {x: 0.2, y: 0.6}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c816d2a0239f8844e8b5ca85d5cdadc1
-      internalID: -1506105435
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: B_witch_attack_8
+      name: Sprite-0004-Sheet_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 104
-        height: 46
-      alignment: 9
-      pivot: {x: 0.2, y: 0.6}
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7f920037388b18c4e972cad09073fcfe
-      internalID: 990838007
+      spriteID: 311e86849b8145f41822d939ac2fdbc0
+      internalID: 1133542593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite-0004-Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da1d47a85b2adbf4c8516cfa0ea5bae8
+      internalID: -2081146464
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite-0004-Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 868ce8766444c0e4e96fe4933a57e72c
+      internalID: -22178901
       vertices: []
       indices: 
       edges: []
@@ -316,15 +190,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      B_witch_attack_7: -1506105435
-      B_witch_attack_6: 2073616147
-      B_witch_attack_0: -319865958
-      B_witch_attack_1: -1840151929
-      B_witch_attack_4: -160218086
-      B_witch_attack_8: 990838007
-      B_witch_attack_3: -2008776902
-      B_witch_attack_2: 622791481
-      B_witch_attack_5: 319536911
+      Sprite-0004-Sheet_1: -2081146464
+      Sprite-0004-Sheet_2: -22178901
+      Sprite-0004-Sheet_0: 1133542593
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

@@ -6,5 +6,5 @@ using UnityEngine;
 
 public class Data_PlayerDetected : ScriptableObject
 {
-    
+    public float longRangeActionTime = 1.5f;
 }

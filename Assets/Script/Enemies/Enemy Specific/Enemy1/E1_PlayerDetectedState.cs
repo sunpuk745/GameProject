@@ -25,10 +25,17 @@ public class E1_PlayerDetectedState : PlayerDetectedState
     {
         base.LogicUpdate();
 
-        if (!isPlayerInMaxAggroRange)
+        if (performCloseRangeAction)
         {
-            enemy.idleState.SetTurnAfterIdle(false);
-            stateMachine.ChangeState(enemy.idleState);
+            stateMachine.ChangeState(enemy.meleeAttackState);
+        }
+        else if (performLongRangeAction)
+        {
+            stateMachine.ChangeState(enemy.chargeState);
+        }
+        else if (!isPlayerInMaxAggroRange)
+        {
+            stateMachine.ChangeState(enemy.findingPlayerState);
         }
     }
 
