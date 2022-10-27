@@ -19,13 +19,13 @@ public class SoundEffect : MonoBehaviour
         audioSource.PlayOneShot(FootstepsAudioClips_2.GetAudioClip());
     }
 
-    void FadeIn()
+    public void FadeIn()
     {
-        audioSource.DOFade(0.25f, 6f).SetEase(Ease.OutSine);
+        audioSource.DOFade(0.2f, 8f).SetEase(Ease.OutSine);
     }
 
-    void FadeOut()
+    public void FadeOut()
     {
-        audioSource.DOFade(0f, 3f);
+        audioSource.DOFade(0f, 6f);
     }
 }
