@@ -10,6 +10,8 @@ public class Enemy1 : Entity
     public E1_ChargeState chargeState { get; private set; }
     public E1_FindingPlayerState findingPlayerState { get; private set; }
     public E1_MeleeAttackState meleeAttackState { get; private set; }
+    public E1_StunState stunState { get; private set; }
+    public E1_DeadState deadState { get; private set; }
 
     [SerializeField]private Data_IdleState idleStateData;
     [SerializeField]private Data_MoveState moveStateData;
@@ -17,6 +19,8 @@ public class Enemy1 : Entity
     [SerializeField]private Data_ChargeState chargeStateData;
     [SerializeField]private Data_FindingPlayerState findingPlayerStateData;
     [SerializeField]private Data_MeleeAttackState meleeAttackStateData;
+    [SerializeField]private Data_StunState stunStateData;
+    [SerializeField]private Data_DeadState deadStateData;
 
     [SerializeField]private Transform meleeAttackPosition;
 
@@ -30,9 +34,27 @@ public class Enemy1 : Entity
         chargeState = new E1_ChargeState(this, stateMachine, "charge", chargeStateData, this);
         findingPlayerState = new E1_FindingPlayerState(this, stateMachine, "findingPlayer", findingPlayerStateData, this);
         meleeAttackState = new E1_MeleeAttackState(this, stateMachine, "meleeAttack", meleeAttackPosition, meleeAttackStateData, this);
+        stunState = new E1_StunState(this, stateMachine, "stun", stunStateData, this);
+        deadState = new E1_DeadState(this, stateMachine, "dead", deadStateData, this);
 
         stateMachine.Initialize(moveState);
 
+    }
+
+    public override void Damage(AttackDetails attackDetails)
+    {
+        base.Damage(attackDetails);
+
+        if (isDead)
+        {
+            stateMachine.ChangeState(deadState);
+        }
+        else if (isStunned && stateMachine.currentState != stunState)
+        {
+            stateMachine.ChangeState(stunState);
+        }
+
+        
     }
 
     public override void OnDrawGizmos()

@@ -37,6 +37,7 @@ public class NewPlayerMovement : MonoBehaviour
     [SerializeField]private float attackCooldown = 1f;
     [SerializeField]private float attackRange;
     [SerializeField]private float attackDamage = 10f;
+    [SerializeField]private float stunDamageAmount = 1f;
     private bool isAttacking;
     private AttackDetails attackDetails;
     [SerializeField]private Transform attackPos;
@@ -125,7 +126,8 @@ public class NewPlayerMovement : MonoBehaviour
             {
                 footEmission.rateOverTime = 35f;
             }
-            else{
+            else
+            {
                 footEmission.rateOverTime = 0f;
             }
             
@@ -240,6 +242,7 @@ public class NewPlayerMovement : MonoBehaviour
                 
                 rb.velocity = new Vector2(0,0);
                 attackDetails.damageAmount = attackDamage;
+                attackDetails.stunDamageAmount = stunDamageAmount;
                 attackingTime = attackCooldown;
 
                 foreach (Collider2D collider in enemiesToDamage)
