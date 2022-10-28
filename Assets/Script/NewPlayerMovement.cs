@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 public class NewPlayerMovement : MonoBehaviour
 {
     [Header("Component")]
@@ -62,6 +63,7 @@ public class NewPlayerMovement : MonoBehaviour
 
     private void Start() 
     {
+        GetCurrentBuildIndex();
         rb = GetComponent<Rigidbody2D>();
         footEmission = footsteps.emission;
     }
@@ -109,8 +111,6 @@ public class NewPlayerMovement : MonoBehaviour
     private Vector2 GetInput()
     {
         return new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        
-        
     }
 
     // Move
@@ -276,6 +276,16 @@ public class NewPlayerMovement : MonoBehaviour
             interactable.SetActive(true);
             currentTeleporter = collision.gameObject;
         }
+
+        if (collision.CompareTag("Interactable"))
+        {
+            interactable.SetActive(true);
+        }
+
+        if (collision.CompareTag("Hazard")) 
+        {
+            SceneManager.LoadScene(GetCurrentBuildIndex());
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -287,6 +297,15 @@ public class NewPlayerMovement : MonoBehaviour
             currentTeleporter = null;
             interactable.SetActive(false);
         }
+
+        if (collision.CompareTag("Interactable"))
+        {
+            interactable.SetActive(false);
+        }
     }
 
+    public int GetCurrentBuildIndex()
+    {
+        return SceneManager.GetActiveScene().buildIndex;
+    }
 }
