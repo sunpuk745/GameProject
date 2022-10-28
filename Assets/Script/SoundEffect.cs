@@ -19,8 +19,9 @@ public class SoundEffect : MonoBehaviour
         audioSource.PlayOneShot(FootstepsAudioClips_2.GetAudioClip());
     }
 
-    public void FadeIn()
+    IEnumerator FadeIn()
     {
+        yield return new WaitForSeconds(1.5f);
         audioSource.DOFade(0.2f, 8f).SetEase(Ease.OutSine);
     }
 
