@@ -32,10 +32,13 @@ public class NewPlayerMovement : MonoBehaviour
     private bool canJump => Input.GetButtonDown("Jump") && onGround;
 
     [Header("Attack")]
-    [SerializeField] private float attackingTime = 2f;
-    [SerializeField] private float attackCooldown = 1f;
-    private bool canAttack = true;
+    [SerializeField]private float attackingTime;
+    [SerializeField]private float attackCooldown = 1f;
+    [SerializeField]private float attackRange;
+    [SerializeField]private float attackDamage = 10f;
     private bool isAttacking;
+    private AttackDetails attackDetails;
+    [SerializeField]private Transform attackPos;
 
     [Header("ParticleEffect")]
     // To use ParticleEffect(walk particle) : footEmission.rateOverTime = 0f; set it to 0f to disable and increase value to enable particle
@@ -55,29 +58,22 @@ public class NewPlayerMovement : MonoBehaviour
 
     [Header("Layer Mask")]
     [SerializeField]private LayerMask groundLayer;
+    [SerializeField]private LayerMask whatIsEnemy;
 
     private void Start() 
     {
-        rb = GetComponent<Rigidbody2D>();   
+        rb = GetComponent<Rigidbody2D>();
         footEmission = footsteps.emission;
     }
 
     private void Update() 
-    {
- 
-        if(isAttacking)
-        {
-            return;
-        }
-        
+    {  
+        CheckAttack();
         CheckCollision();
         horizontalDirection = GetInput().x;
         animator.SetFloat("Speed", Mathf.Abs(horizontalDirection));
         Crouch();
-        if (Input.GetMouseButtonDown(0) && canAttack && onGround)
-        {
-            StartCoroutine(Attack());
-        }
+
         if ((canJump) && (!isCrouched))
         {
             Jump();
@@ -107,11 +103,6 @@ public class NewPlayerMovement : MonoBehaviour
 
     private void FixedUpdate() 
     {
-        if(isAttacking)
-        {
-            return;
-        }
-
         Move();
     }
 
@@ -125,7 +116,7 @@ public class NewPlayerMovement : MonoBehaviour
     // Move
     private void Move()
     {
-        if (canMove)
+        if (canMove && !isAttacking)
         {
             rb.AddForce(new Vector2(horizontalDirection, 0f) * movementAcceleration);
             if (Mathf.Abs(rb.velocity.x) > maxMoveSpeed)
@@ -139,11 +130,11 @@ public class NewPlayerMovement : MonoBehaviour
             }
             
         }
-        if(horizontalDirection > 0 && !IsFacingRight)
+        if(horizontalDirection > 0 && !IsFacingRight && !isAttacking)
             {
                 Turn();
             }
-            if(horizontalDirection < 0 && IsFacingRight)
+            if(horizontalDirection < 0 && IsFacingRight && !isAttacking)
             {
                 Turn();
             }
@@ -236,17 +227,45 @@ public class NewPlayerMovement : MonoBehaviour
     }
 
 // Attack
-    private IEnumerator Attack()
+    private void CheckAttack()
     {
-        canAttack = false;
+        if (attackingTime <= 0 && onGround)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                StartCoroutine(StopMoveWhenAttacking());
+                animator.SetTrigger("Attack");
+                CinemachineShake.Instance.ShakeCamera(intensity, shakeTime);
+                Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos.position, attackRange, whatIsEnemy);
+                
+                rb.velocity = new Vector2(0,0);
+                attackDetails.damageAmount = attackDamage;
+                attackingTime = attackCooldown;
+
+                foreach (Collider2D collider in enemiesToDamage)
+                {
+                    collider.transform.parent.SendMessage("Damage", attackDetails);
+                }
+            }
+            
+        }
+        else 
+        {
+            attackingTime -= Time.deltaTime;
+        }
+    }
+
+    private IEnumerator StopMoveWhenAttacking()
+    {
+        rb.velocity = new Vector2(0, 0);
         isAttacking = true;
-        rb.velocity = new Vector2(0,0);
-        animator.SetTrigger("Attack");
-        CinemachineShake.Instance.ShakeCamera(intensity, shakeTime);
-        yield return new WaitForSeconds(attackingTime);
+        yield return new WaitForSeconds(0.5f);
         isAttacking = false;
-        yield return new WaitForSeconds(attackCooldown);
-        canAttack = true;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(attackPos.position, attackRange);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
