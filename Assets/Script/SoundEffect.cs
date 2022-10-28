@@ -21,8 +21,8 @@ public class SoundEffect : MonoBehaviour
 
     IEnumerator FadeIn()
     {
-        yield return new WaitForSeconds(1.5f);
-        audioSource.DOFade(0.2f, 8f).SetEase(Ease.OutSine);
+        yield return new WaitForSeconds(0.5f);
+        audioSource.DOFade(0.08f, 8f);
     }
 
     public void FadeOut()

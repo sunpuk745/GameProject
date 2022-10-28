@@ -10,6 +10,7 @@ public class MainMenu : MonoBehaviour
     public AudioSource menuAudioSource;
     [SerializeField] private SoAudioClips selected_AudioClip;
     [SerializeField] private LevelLoader levelLoader;
+    [SerializeField] private Animator title_transition;
 
     private void Awake()
     {
@@ -34,13 +35,14 @@ public class MainMenu : MonoBehaviour
 
     private IEnumerator musicFadeIn()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1.5f);
         menuAudioSource.Play();
-        menuAudioSource.DOFade(0.2f, 20f).SetEase(Ease.OutSine);
+        menuAudioSource.DOFade(0.2f, 10f);
     }
 
     private IEnumerator musicFadeOut()
     {
+        title_transition.SetTrigger("Start");
         menuAudioSource.DOFade(0f, 1f);
         levelLoader.LoadNextLevel();
         yield return new WaitForSeconds(0.1f);
