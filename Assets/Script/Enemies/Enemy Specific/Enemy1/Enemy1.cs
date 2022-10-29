@@ -52,9 +52,7 @@ public class Enemy1 : Entity
         else if (isStunned && stateMachine.currentState != stunState)
         {
             stateMachine.ChangeState(stunState);
-        }
-
-        
+        } 
     }
 
     public override void OnDrawGizmos()

@@ -21,6 +21,7 @@ public class Entity : MonoBehaviour
     [SerializeField]private Transform ledgeCheck;
     [SerializeField]private Transform playerCheck;
     [SerializeField]private Transform groundCheck;
+    public Transform playerPos;
 
     private float currentHealth;
     private float currentStunResistance;
@@ -103,6 +104,16 @@ public class Entity : MonoBehaviour
     {
         return Physics2D.Raycast(playerCheck.position, aliveGameObject.transform.right, entityData.closeRangeActionDistance, entityData.Player);
     }
+    
+    public virtual bool DetectPlayerInRange()
+    {
+        return Physics2D.OverlapBox((Vector2)playerCheck.position + entityData.playerCheckOffset, entityData.playerDetectRange, 0 ,entityData.Player);
+    }
+
+    public virtual bool CheckPlayerInFleeRange()
+    {
+        return Physics2D.OverlapBox((Vector2)playerCheck.position + entityData.playerFleeRangeOffset, entityData.playerFleeRange, 0 ,entityData.Player);
+    }
 
     public virtual void DamageKnock(float velocity)
     {
@@ -153,7 +164,14 @@ public class Entity : MonoBehaviour
     public virtual void Turn()
     {
         facingDirection *= -1;
+        //.transform.localScale = new Vector2(transform.localScale.x * -1, transform.localScale.y);
         aliveGameObject.transform.Rotate(0f, 180f, 0f);
+    }
+
+    public virtual void Flip()
+    {
+        facingDirection *= -1;
+        aliveGameObject.transform.localScale = new Vector2(aliveGameObject.transform.localScale.x * -1, aliveGameObject.transform.localScale.y);
     }
 
     public virtual void OnDrawGizmos() 
@@ -161,8 +179,14 @@ public class Entity : MonoBehaviour
         Gizmos.DrawLine(wallCheck.position, wallCheck.position + (Vector3)(Vector2.right * facingDirection * entityData.wallCheckDistance));
         Gizmos.DrawLine(ledgeCheck.position, ledgeCheck.position + (Vector3)(Vector2.down * entityData.ledgeCheckDistance));
 
-        Gizmos.DrawWireSphere(playerCheck.position + (Vector3)(Vector2.right * entityData.closeRangeActionDistance), 0.2f);
-        Gizmos.DrawWireSphere(playerCheck.position + (Vector3)(Vector2.right * entityData.minAggroDistance), 0.2f);
-        Gizmos.DrawWireSphere(playerCheck.position + (Vector3)(Vector2.right * entityData.maxAggroDistance), 0.2f);
+        Gizmos.DrawWireSphere(playerCheck.position + (Vector3)(Vector2.right * facingDirection * entityData.closeRangeActionDistance), 0.2f);
+        Gizmos.DrawWireSphere(playerCheck.position + (Vector3)(Vector2.right * facingDirection * entityData.minAggroDistance), 0.2f);
+        Gizmos.DrawWireSphere(playerCheck.position + (Vector3)(Vector2.right * facingDirection * entityData.maxAggroDistance), 0.2f);
+
+        Gizmos.color = entityData.gizmoColor;
+        Gizmos.DrawCube((Vector2)playerCheck.position + entityData.playerCheckOffset, entityData.playerDetectRange);
+
+        Gizmos.color = entityData.gizmoFleeColor;
+        Gizmos.DrawCube((Vector2)playerCheck.position + entityData.playerFleeRangeOffset, entityData.playerFleeRange);
     }
 }

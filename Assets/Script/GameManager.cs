@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     public float currentHealth;
 
 
-     void Awake() 
+    void Awake()
     {
         var gameManagerNum = FindObjectsOfType<GameManager>().Length;
         if (gameManagerNum > 1)
@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
         {
             //TODO: Die
         }
-        
+
         //Debug.Log(currentHealth);
     }
 

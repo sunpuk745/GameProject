@@ -9,6 +9,7 @@ public class IdleState : State
     protected bool TurnAfterIdle;
     protected bool isIdleTimeOver;
     protected bool isPlayerInMinAggroRange;
+    protected bool DetectPlayerInRange;
 
     protected float idleTime;
 
@@ -22,6 +23,7 @@ public class IdleState : State
         base.DoChecks();
 
         isPlayerInMinAggroRange = entity.CheckPlayerInMinAggroRange();
+        DetectPlayerInRange = entity.DetectPlayerInRange();
     }
 
     public override void Enter()

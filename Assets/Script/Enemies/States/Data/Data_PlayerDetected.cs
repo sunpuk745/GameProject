@@ -7,4 +7,7 @@ using UnityEngine;
 public class Data_PlayerDetected : ScriptableObject
 {
     public float longRangeActionTime = 1.5f;
+    public float magicCastTime = 3f;
+
+    public float distanceToPlayer;
 }

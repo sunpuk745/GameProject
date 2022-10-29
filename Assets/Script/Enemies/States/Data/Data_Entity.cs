@@ -16,6 +16,14 @@ public class Data_Entity : ScriptableObject
 
     public float minAggroDistance = 2f;
     public float maxAggroDistance = 4f;
+
+    public Color gizmoColor = Color.green;    
+    public Vector2 playerDetectRange = Vector2.one;
+    public Vector2 playerCheckOffset = Vector2.zero;
+
+    public Color gizmoFleeColor = Color.red;
+    public Vector2 playerFleeRange = Vector2.one;
+    public Vector2 playerFleeRangeOffset = Vector2.zero;
     
     public float stunResistance = 3f;
     public float stunRecoveryTimme = 2f;

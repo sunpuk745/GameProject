@@ -10,24 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b045fb9cc0d966545ae6de31f711376e, type: 3}
-  m_Name: E1_BaseData
+  m_Name: E2_BaseData
   m_EditorClassIdentifier: 
-  maxHealth: 50
-  DamageKnockSpeed: 5
-  wallCheckDistance: 0.4
-  ledgeCheckDistance: 0.3
+  maxHealth: 30
+  DamageKnockSpeed: 3
+  wallCheckDistance: 0.5
+  ledgeCheckDistance: 0.4
   groundCheckRadius: 0.3
-  minAggroDistance: 7
-  maxAggroDistance: 8
-  gizmoColor: {r: 0, g: 1, b: 0, a: 0}
-  playerDetectRange: {x: 1, y: 1}
-  playerCheckOffset: {x: 0, y: 0}
-  gizmoFleeColor: {r: 1, g: 0, b: 0, a: 1}
-  playerFleeRange: {x: 1, y: 1}
-  playerFleeRangeOffset: {x: 0, y: 0}
+  minAggroDistance: 3
+  maxAggroDistance: 3
+  gizmoColor: {r: 0, g: 1, b: 0, a: 0.14117648}
+  playerDetectRange: {x: 15, y: 10}
+  playerCheckOffset: {x: 0, y: 4}
+  gizmoFleeColor: {r: 1, g: 0, b: 0, a: 0.44705883}
+  playerFleeRange: {x: 6, y: 5}
+  playerFleeRangeOffset: {x: 0, y: 1}
   stunResistance: 3
   stunRecoveryTimme: 2
-  closeRangeActionDistance: 3
+  closeRangeActionDistance: 2
   Ground:
     serializedVersion: 2
     m_Bits: 64
