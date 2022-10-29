@@ -141,6 +141,11 @@ public class NewPlayerMovement : MonoBehaviour
                 Turn();
             }
         
+        if (isAttacking)
+        {
+            rb.velocity = new Vector2(0, 0);
+        }
+        
     }
 
     private void ApplyGroundDeceleration()
@@ -228,29 +233,17 @@ public class NewPlayerMovement : MonoBehaviour
         
     }
 
-// Attack
+// Attack handler
+
     private void CheckAttack()
     {
-        if (attackingTime <= 0 && onGround)
+        if (attackingTime <= 0 && onGround && !isAttacking)
         {
             if (Input.GetMouseButtonDown(0))
             {
-                StartCoroutine(StopMoveWhenAttacking());
+                isAttacking = true;
                 animator.SetTrigger("Attack");
-                CinemachineShake.Instance.ShakeCamera(intensity, shakeTime);
-                Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos.position, attackRange, whatIsEnemy);
-                
-                rb.velocity = new Vector2(0,0);
-                attackDetails.damageAmount = attackDamage;
-                attackDetails.stunDamageAmount = stunDamageAmount;
-                attackingTime = attackCooldown;
-
-                foreach (Collider2D collider in enemiesToDamage)
-                {
-                    collider.transform.parent.SendMessage("Damage", attackDetails);
-                }
             }
-            
         }
         else 
         {
@@ -258,11 +251,23 @@ public class NewPlayerMovement : MonoBehaviour
         }
     }
 
-    private IEnumerator StopMoveWhenAttacking()
+    private void AttackCheck()
     {
-        rb.velocity = new Vector2(0, 0);
-        isAttacking = true;
-        yield return new WaitForSeconds(0.5f);
+        CinemachineShake.Instance.ShakeCamera(intensity, shakeTime);
+        Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos.position, attackRange, whatIsEnemy);
+        
+        attackDetails.damageAmount = attackDamage;
+        attackDetails.stunDamageAmount = stunDamageAmount;
+        attackingTime = attackCooldown;
+
+        foreach (Collider2D collider in enemiesToDamage)
+        {
+            collider.transform.parent.SendMessage("Damage", attackDetails);
+        }
+    }
+
+    private void FinishAttack()
+    {
         isAttacking = false;
     }
 
