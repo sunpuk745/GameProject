@@ -12,15 +12,11 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private LevelLoader levelLoader;
     [SerializeField] private Animator title_transition;
 
-    private void Awake()
-    {
-        StartCoroutine(musicFadeIn());
-    }
-
     public void PlayGame()
     {
         Selected_SoundEffectPlay();
-        StartCoroutine(musicFadeOut());
+        title_transition.SetTrigger("Start");
+        levelLoader.LoadNextLevel();
     }
 
     public void ExitGame()
@@ -32,21 +28,4 @@ public class MainMenu : MonoBehaviour
     {
         menuAudioSource.PlayOneShot(selected_AudioClip.GetAudioClip());
     }
-
-    private IEnumerator musicFadeIn()
-    {
-        yield return new WaitForSeconds(1.5f);
-        menuAudioSource.Play();
-        menuAudioSource.DOFade(0.2f, 10f);
-    }
-
-    private IEnumerator musicFadeOut()
-    {
-        title_transition.SetTrigger("Start");
-        menuAudioSource.DOFade(0f, 1f);
-        levelLoader.LoadNextLevel();
-        yield return new WaitForSeconds(0.1f);
-        DOTween.KillAll();
-    }
-
 }

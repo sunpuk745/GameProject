@@ -1314,6 +1314,9 @@ MonoBehaviour:
   audioSource: {fileID: 1423039191}
   FootstepsAudioClips_1: {fileID: 11400000, guid: a747f4f2c1ca7204c8b9b5c1c463e74e, type: 2}
   FootstepsAudioClips_2: {fileID: 11400000, guid: dbeb3320c261d344082f107a49628705, type: 2}
+  TimeBeforefadeIn: 1.5
+  fadeInDuration: 15
+  fadeOutDuration: 12
 --- !u!1 &1652348527
 GameObject:
   m_ObjectHideFlags: 0

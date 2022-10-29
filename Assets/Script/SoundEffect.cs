@@ -8,6 +8,9 @@ public class SoundEffect : MonoBehaviour
     public AudioSource audioSource;
     [SerializeField] private SoAudioClips FootstepsAudioClips_1;
     [SerializeField] private SoAudioClips FootstepsAudioClips_2;
+    [SerializeField] private float TimeBeforefadeIn;
+    [SerializeField] private float fadeInDuration;
+    [SerializeField] private float fadeOutDuration;
 
     void FootStepPlay_1()
     {
@@ -21,12 +24,12 @@ public class SoundEffect : MonoBehaviour
 
     IEnumerator FadeIn()
     {
-        yield return new WaitForSeconds(0.5f);
-        audioSource.DOFade(0.08f, 8f);
+        yield return new WaitForSeconds(TimeBeforefadeIn);
+        audioSource.DOFade(0.08f, fadeInDuration);
     }
 
     public void FadeOut()
     {
-        audioSource.DOFade(0f, 6f);
+        audioSource.DOFade(0f, fadeOutDuration);
     }
 }

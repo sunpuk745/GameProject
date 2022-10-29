@@ -334,6 +334,7 @@ public class NewPlayerMovement : MonoBehaviour
             interactable.SetActive(true);
             currentTeleporter = collision.gameObject;
         }
+        
 
         if (collision.CompareTag("Interactable"))
         {
@@ -342,7 +343,7 @@ public class NewPlayerMovement : MonoBehaviour
 
         if (collision.CompareTag("Hazard")) 
         {
-            SceneManager.LoadScene(GetCurrentBuildIndex());
+            Debug.Log("Player Hit");
         }
     }
 

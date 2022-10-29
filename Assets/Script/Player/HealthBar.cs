@@ -5,37 +5,27 @@ using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour
 {
-    public Text healthText;
-    public Image healthBar;
-    float health, maxHealth = 100;
+    public Image frontHealthBar;
+    public Image backHealthBar;
 
-    private void Start()
-    {
-        health = maxHealth;
-    }
+    [SerializeField] private float LerpSpeedSetting = 1f;
+    [SerializeField] private GameManager gameManager;
 
+    float health, maxHealth = 0;
+    float LerpSpeed;
+    
     private void Update()
     {
+        maxHealth = gameManager.playerMaxHP;
+        health = gameManager.currentHealth;
         if (health > maxHealth) health = maxHealth;
+        LerpSpeed = LerpSpeedSetting * Time.deltaTime;
         HealthBarFiller();
     }
 
     void HealthBarFiller()
     {
-        healthBar.fillAmount = health / maxHealth;
-    }
-
-    public void Damage(float damagePoints)
-    {
-        if (health > 0){
-            health -= damagePoints;
-        }
-    }
-
-    public void Heal(float damagePoints)
-    {
-        if (health < maxHealth>){
-            health += damagePoints;
-        }
+        frontHealthBar.fillAmount = health / maxHealth;
+        backHealthBar.fillAmount = Mathf.Lerp(backHealthBar.fillAmount, health/maxHealth, LerpSpeed);
     }
 }
