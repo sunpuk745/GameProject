@@ -23,6 +23,7 @@ public class DeadState : State
         base.Enter();
 
         //entity.gameObject.SetActive(false);
+        //entity.enemyCollider.enabled = false;
         entity.animationToStateMachine.deadState = this;
         isAnimationFinished = false;
         entity.SetVelocity(0f);

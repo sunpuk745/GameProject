@@ -14,7 +14,8 @@ public class Entity : MonoBehaviour
     public Rigidbody2D rb { get; private set; }
     public Animator anim { get; private set; }
     public GameObject aliveGameObject { get; private set; }
-    public AnimationToStateMachine animationToStateMachine{ get; private set; }
+    public AnimationToStateMachine animationToStateMachine { get; private set; }
+    public Collider2D enemyCollider { get; private set; }
 
     [SerializeField]private Transform wallCheck;
     [SerializeField]private Transform ledgeCheck;
@@ -39,6 +40,7 @@ public class Entity : MonoBehaviour
         aliveGameObject = transform.Find("Alive").gameObject;
         rb = aliveGameObject.GetComponent<Rigidbody2D>();
         anim = aliveGameObject.GetComponent<Animator>();
+        enemyCollider = aliveGameObject.GetComponent<Collider2D>();
         animationToStateMachine = aliveGameObject.GetComponent<AnimationToStateMachine>();
 
         stateMachine = new FiniteStateMachine();
@@ -121,8 +123,11 @@ public class Entity : MonoBehaviour
         currentHealth -= attackDetails.damageAmount;
         currentStunResistance -= attackDetails.stunDamageAmount;
 
-        DamageKnock(entityData.DamageKnockSpeed);
-
+        if (!isDead)
+        {
+            DamageKnock(entityData.DamageKnockSpeed);
+        }
+        
         if (attackDetails.position.x > aliveGameObject.transform.position.x)
         {
             lastDamageDirection = -1;
