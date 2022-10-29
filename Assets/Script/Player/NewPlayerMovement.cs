@@ -8,6 +8,7 @@ public class NewPlayerMovement : MonoBehaviour
     [Header("Component")]
     private Rigidbody2D rb;
     public Animator animator;
+    private GameManager gameManager;
     private bool isCrouched = false;
     //Teleporter
     private GameObject currentTeleporter;
@@ -31,26 +32,38 @@ public class NewPlayerMovement : MonoBehaviour
     [SerializeField] private float fallMultiplier = 8f;
     [SerializeField] private float lowJumpFallMultipier = 5f;
     private bool canJump => Input.GetButtonDown("Jump") && onGround;
+    [Space(10)]
 
     [Header("Attack")]
-    [SerializeField]private float attackingTime;
-    [SerializeField]private float attackCooldown = 1f;
-    [SerializeField]private float attackRange;
-    [SerializeField]private float attackDamage = 10f;
-    [SerializeField]private float stunDamageAmount = 1f;
+    [SerializeField] private float attackCooldown = 1f;
+    [SerializeField] private float attackRange;
+    [SerializeField] private float attackDamage = 10f;
+    [SerializeField] private float stunDamageAmount = 1f;
+    private float attackingTime;
+    private int attackedDirection;
     private bool isAttacking;
     private AttackDetails attackDetails;
-    [SerializeField]private Transform attackPos;
+    [SerializeField] private Transform attackPos;
+    [Space(10)]
+
+    [Header("Knockback")]
+    [SerializeField] private float knockbackDuration;
+    private float knockbackStartTime;
+    private bool isKnockback;
+    [SerializeField] private Vector2 knockbackSpeed;
+    [Space(10)]
 
     [Header("ParticleEffect")]
     // To use ParticleEffect(walk particle) : footEmission.rateOverTime = 0f; set it to 0f to disable and increase value to enable particle
     [SerializeField] public ParticleSystem footsteps;
     [SerializeField] private ParticleSystem.EmissionModule footEmission;
+    [Space(10)]
 
     [Header("Camera Shake")]
     // To use Camera Shake : CinemachineShake.Instance.ShakeCamera(intensity, shakeTime);
     [SerializeField] private float intensity = 5f;
     [SerializeField] private float shakeTime = 0.3f;
+    [Space(10)]
 
     [Header("Ground Collision Variables")]
     [SerializeField] private Transform groundCheckPoint;
@@ -65,13 +78,17 @@ public class NewPlayerMovement : MonoBehaviour
     private void Start() 
     {
         GetCurrentBuildIndex();
+
+        gameManager = FindObjectOfType<GameManager>();
         rb = GetComponent<Rigidbody2D>();
+
         footEmission = footsteps.emission;
     }
 
     private void Update() 
     {  
         CheckAttack();
+        CheckKnockback();
         CheckCollision();
         horizontalDirection = GetInput().x;
         animator.SetFloat("Speed", Mathf.Abs(horizontalDirection));
@@ -117,7 +134,7 @@ public class NewPlayerMovement : MonoBehaviour
     // Move
     private void Move()
     {
-        if (canMove && !isAttacking)
+        if (canMove && !isAttacking && !isKnockback)
         {
             rb.AddForce(new Vector2(horizontalDirection, 0f) * movementAcceleration);
             if (Mathf.Abs(rb.velocity.x) > maxMoveSpeed)
@@ -132,11 +149,11 @@ public class NewPlayerMovement : MonoBehaviour
             }
             
         }
-        if(horizontalDirection > 0 && !IsFacingRight && !isAttacking)
+        if(horizontalDirection > 0 && !IsFacingRight && !isAttacking && !isKnockback)
             {
                 Turn();
             }
-            if(horizontalDirection < 0 && IsFacingRight && !isAttacking)
+            if(horizontalDirection < 0 && IsFacingRight && !isAttacking && !isKnockback)
             {
                 Turn();
             }
@@ -269,6 +286,39 @@ public class NewPlayerMovement : MonoBehaviour
     private void FinishAttack()
     {
         isAttacking = false;
+    }
+
+    //Take damage
+    private void Damage(AttackDetails attackDetails)
+    {
+        gameManager.DecreaseHP(attackDetails.damageAmount);
+
+        if (attackDetails.position.x < transform.position.x)
+        {
+            attackedDirection = 1;
+        }
+        else
+        {
+            attackedDirection = -1;
+        }
+
+        Knockback(attackedDirection);
+    }
+
+    public void Knockback(int direction)
+    {
+        isKnockback = true;
+        knockbackStartTime = Time.time;
+        rb.velocity = new Vector2(knockbackSpeed.x * direction, knockbackSpeed.y);
+    }
+
+    private void CheckKnockback()
+    {
+        if (Time.time >= knockbackStartTime + knockbackDuration && isKnockback)
+        {
+            isKnockback = false;
+            rb.velocity = new Vector2(0f, rb.velocity.y);
+        }
     }
 
     private void OnDrawGizmos()

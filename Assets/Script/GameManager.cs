@@ -4,15 +4,38 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public float playerMaxHP = 100f;
+    public float currentHealth;
+
+
+     void Awake() 
     {
-        
+        var gameManagerNum = FindObjectsOfType<GameManager>().Length;
+        if (gameManagerNum > 1)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            DontDestroyOnLoad(gameObject);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        currentHealth = playerMaxHP;
     }
+
+    public void DecreaseHP(float damageAmount)
+    {
+        currentHealth -= damageAmount;
+
+        if (currentHealth <= 0f)
+        {
+            //TODO: Die
+        }
+        
+        //Debug.Log(currentHealth);
+    }
+
 }
