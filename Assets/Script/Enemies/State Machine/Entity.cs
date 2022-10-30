@@ -23,7 +23,7 @@ public class Entity : MonoBehaviour
     [SerializeField]private Transform groundCheck;
     public Transform playerPos;
 
-    private float currentHealth;
+    public float currentHealth;
     private float currentStunResistance;
     private float lastDamageTime;
 

@@ -254,7 +254,7 @@ public class NewPlayerMovement : MonoBehaviour
 
     private void CheckAttack()
     {
-        if (attackingTime <= 0 && onGround && !isAttacking)
+        if (attackingTime <= 0 && onGround && !isAttacking && !isKnockback)
         {
             if (Input.GetMouseButtonDown(0))
             {
@@ -302,14 +302,14 @@ public class NewPlayerMovement : MonoBehaviour
             attackedDirection = -1;
         }
 
-        Knockback(attackedDirection);
+        //Knockback(attackedDirection);
     }
 
-    public void Knockback(int direction)
+    public void Knockback(int direction, float knockDistance)
     {
         isKnockback = true;
         knockbackStartTime = Time.time;
-        rb.velocity = new Vector2(knockbackSpeed.x * direction, knockbackSpeed.y);
+        rb.velocity = new Vector2((knockbackSpeed.x + knockDistance) * direction, knockbackSpeed.y);
     }
 
     private void CheckKnockback()

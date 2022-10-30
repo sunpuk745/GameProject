@@ -19,6 +19,15 @@ public class E2_PlayerDetectedState : PlayerDetectedState
     public override void Enter()
     {
         base.Enter();
+
+        if (isPlayerInFleeRange && Time.time < enemy.rangePushState.startTime + enemy.rangePushStateData.magicCooldown)
+        {
+            stateMachine.ChangeState(enemy.fleeState);
+        }
+        else if (isPlayerInFleeRange && entity.currentHealth < 50 && Time.time >= enemy.rangePushState.startTime + enemy.rangePushStateData.magicCooldown)
+        {
+            stateMachine.ChangeState(enemy.rangePushState);
+        }
     }
 
     public override void Exit()
@@ -41,9 +50,9 @@ public class E2_PlayerDetectedState : PlayerDetectedState
         {
             stateMachine.ChangeState(enemy.idleState);
         }
-        else if (isPlayerInFleeRange)
+        else if (Time.time >= startTime + stateData.magicCastTime)
         {
-            stateMachine.ChangeState(enemy.fleeState);
+            stateMachine.ChangeState(enemy.rangeAttackState);
         }
     }
 

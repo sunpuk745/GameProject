@@ -45,11 +45,6 @@ public class FleeState : State
         {
             isFleeTimeOver = true;
         }
-        else if (isDetectingWall || !isDetectingLedge)
-        {
-            //entity.aliveGameObject.transform.position = new Vector2(entity.aliveGameObject.transform.position.x + stateData.teleportDistance * -1, entity.aliveGameObject.transform.position.y);
-            entity.SetVelocity(0f);
-        }
     }
 
     public override void PhysicsUpdate()
