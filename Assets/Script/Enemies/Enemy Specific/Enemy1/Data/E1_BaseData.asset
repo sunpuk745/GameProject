@@ -22,7 +22,7 @@ MonoBehaviour:
   gizmoColor: {r: 0, g: 1, b: 0, a: 0}
   playerDetectRange: {x: 1, y: 1}
   playerCheckOffset: {x: 0, y: 0}
-  gizmoFleeColor: {r: 1, g: 0, b: 0, a: 1}
+  gizmoFleeColor: {r: 1, g: 0, b: 0, a: 0}
   playerFleeRange: {x: 1, y: 1}
   playerFleeRangeOffset: {x: 0, y: 0}
   stunResistance: 3

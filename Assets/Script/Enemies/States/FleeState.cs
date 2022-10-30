@@ -47,7 +47,7 @@ public class FleeState : State
         }
         else if (isDetectingWall || !isDetectingLedge)
         {
-            entity.Flip();
+            //entity.aliveGameObject.transform.position = new Vector2(entity.aliveGameObject.transform.position.x + stateData.teleportDistance * -1, entity.aliveGameObject.transform.position.y);
             entity.SetVelocity(0f);
         }
     }
