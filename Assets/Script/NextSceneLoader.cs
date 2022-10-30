@@ -9,6 +9,6 @@ public class NextSceneLoader : MonoBehaviour
     void OnEnable()
     {
         DOTween.KillAll();
-        SceneManager.LoadScene("SampleScene", LoadSceneMode.Single);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }
