@@ -10,8 +10,6 @@ public class NewPlayerMovement : MonoBehaviour
     public Animator animator;
     private GameManager gameManager;
     private bool isCrouched = false;
-    //Teleporter
-    private GameObject currentTeleporter;
     // InteractableObejct
     public GameObject interactable;
     //One-way platform
@@ -59,12 +57,6 @@ public class NewPlayerMovement : MonoBehaviour
     [SerializeField] private ParticleSystem.EmissionModule footEmission;
     [Space(10)]
 
-    [Header("Camera Shake")]
-    // To use Camera Shake : CinemachineShake.Instance.ShakeCamera(intensity, shakeTime);
-    [SerializeField] private float intensity = 5f;
-    [SerializeField] private float shakeTime = 0.3f;
-    [Space(10)]
-
     [Header("Ground Collision Variables")]
     [SerializeField] private Transform groundCheckPoint;
 	[SerializeField] private Vector2 groundCheckSize = new Vector2(0.49f, 0.03f);
@@ -97,15 +89,6 @@ public class NewPlayerMovement : MonoBehaviour
         if ((canJump) && (!isCrouched))
         {
             Jump();
-        }
-
-        // Teleport
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            if (currentTeleporter != null)
-            {
-                transform.position = currentTeleporter.GetComponent<Teleporter>().GetDestination().position;
-            }
         }
         
         if (onGround)
@@ -270,7 +253,6 @@ public class NewPlayerMovement : MonoBehaviour
 
     private void AttackCheck()
     {
-        CinemachineShake.Instance.ShakeCamera(intensity, shakeTime);
         Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos.position, attackRange, whatIsEnemy);
         
         attackDetails.damageAmount = attackDamage;
@@ -328,14 +310,7 @@ public class NewPlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //Teleport
-        if (collision.CompareTag("Teleporter"))
-        {
-            interactable.SetActive(true);
-            currentTeleporter = collision.gameObject;
-        }
-        
-
+    
         if (collision.CompareTag("Interactable"))
         {
             interactable.SetActive(true);
@@ -349,14 +324,6 @@ public class NewPlayerMovement : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        //Teleport
-        if (collision.CompareTag("Teleporter"))
-        {
-            if (collision.gameObject == currentTeleporter)
-            currentTeleporter = null;
-            interactable.SetActive(false);
-        }
-
         if (collision.CompareTag("Interactable"))
         {
             interactable.SetActive(false);
