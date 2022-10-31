@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b045fb9cc0d966545ae6de31f711376e, type: 3}
+  m_Name: E3_BaseData
+  m_EditorClassIdentifier: 
+  maxHealth: 30
+  DamageKnockSpeed: 3
+  wallCheckDistance: 0.2
+  ledgeCheckDistance: 0.4
+  groundCheckRadius: 0.3
+  minAggroDistance: 2
+  maxAggroDistance: 4
+  gizmoColor: {r: 0, g: 1, b: 0, a: 0.20392157}
+  playerDetectRange: {x: 30, y: 15}
+  playerCheckOffset: {x: 0, y: 5}
+  gizmoFleeColor: {r: 1, g: 0, b: 0, a: 0.3137255}
+  playerFleeRange: {x: 5.75, y: 3}
+  playerFleeRangeOffset: {x: 0, y: 0}
+  gizmoSpecialSkillRangeColor: {r: 1, g: 0, b: 1, a: 0.5372549}
+  specialSkillRange: {x: 14.4, y: 2}
+  specialSkillRangeOffset: {x: 0.3, y: -0.4}
+  stunResistance: 3
+  stunRecoveryTimme: 2
+  closeRangeActionDistance: 1
+  Ground:
+    serializedVersion: 2
+    m_Bits: 64
+  Player:
+    serializedVersion: 2
+    m_Bits: 8

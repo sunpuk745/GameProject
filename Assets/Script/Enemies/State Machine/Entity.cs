@@ -115,6 +115,11 @@ public class Entity : MonoBehaviour
         return Physics2D.OverlapBox((Vector2)playerCheck.position + entityData.playerFleeRangeOffset, entityData.playerFleeRange, 0 ,entityData.Player);
     }
 
+    public virtual bool CheckPlayerInSpecialSkillRange()
+    {
+        return Physics2D.OverlapBox((Vector2)playerCheck.position + entityData.specialSkillRangeOffset, entityData.specialSkillRange, 0, entityData.Player);
+    }
+
     public virtual void DamageKnock(float velocity)
     {
         velocityWorkspace.Set(rb.velocity.x, velocity);
@@ -188,5 +193,8 @@ public class Entity : MonoBehaviour
 
         Gizmos.color = entityData.gizmoFleeColor;
         Gizmos.DrawCube((Vector2)playerCheck.position + entityData.playerFleeRangeOffset, entityData.playerFleeRange);
+
+        Gizmos.color = entityData.gizmoSpecialSkillRangeColor;
+        Gizmos.DrawCube((Vector2)playerCheck.position + entityData.specialSkillRangeOffset, entityData.specialSkillRange);
     }
 }

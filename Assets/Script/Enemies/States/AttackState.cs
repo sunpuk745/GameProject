@@ -8,6 +8,8 @@ public class AttackState : State
 
     protected bool isAnimationFinished;
     protected bool isPlayerInMinAggroRange;
+    protected bool isPlayerInMeleeRange;
+    protected bool isPlayerInSpecialSkillRange;
 
     public AttackState(Entity entity, FiniteStateMachine stateMachine, string animBoolName, Transform attackPosition) : base(entity, stateMachine, animBoolName)
     {
@@ -19,6 +21,8 @@ public class AttackState : State
         base.DoChecks();
 
         isPlayerInMinAggroRange = entity.CheckPlayerInMinAggroRange();
+        isPlayerInMeleeRange = entity.CheckPlayerInFleeRange();
+        isPlayerInSpecialSkillRange = entity.CheckPlayerInSpecialSkillRange();
     }
 
     public override void Enter()

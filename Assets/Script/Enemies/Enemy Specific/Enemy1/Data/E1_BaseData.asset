@@ -20,11 +20,14 @@ MonoBehaviour:
   minAggroDistance: 7
   maxAggroDistance: 8
   gizmoColor: {r: 0, g: 1, b: 0, a: 0}
-  playerDetectRange: {x: 1, y: 1}
+  playerDetectRange: {x: 0, y: 0}
   playerCheckOffset: {x: 0, y: 0}
   gizmoFleeColor: {r: 1, g: 0, b: 0, a: 0}
-  playerFleeRange: {x: 1, y: 1}
+  playerFleeRange: {x: 0, y: 0}
   playerFleeRangeOffset: {x: 0, y: 0}
+  gizmoSpecialSkillRangeColor: {r: 1, g: 0, b: 1, a: 1}
+  specialSkillRange: {x: 0, y: 0}
+  specialSkillRangeOffset: {x: 0, y: 0}
   stunResistance: 3
   stunRecoveryTimme: 2
   closeRangeActionDistance: 3

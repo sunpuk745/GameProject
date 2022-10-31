@@ -11,6 +11,8 @@ public class MoveState : State
     protected bool isPlayerInMinAggroRange;
     protected bool isPlayerInMaxAggroRange;
     protected bool DetectPlayerInRange;
+    protected bool isPlayerInMeleeRange;
+    protected bool isPlayerInSpecialSkillRange;
 
     public MoveState(Entity entity, FiniteStateMachine stateMachine, string animBoolName, Data_MoveState stateData) : base(entity, stateMachine, animBoolName)
     {
@@ -26,12 +28,13 @@ public class MoveState : State
         isPlayerInMinAggroRange = entity.CheckPlayerInMinAggroRange();
         isPlayerInMaxAggroRange = entity.CheckPlayerInMaxAggroRange();
         DetectPlayerInRange = entity.DetectPlayerInRange();
+        isPlayerInMeleeRange = entity.CheckPlayerInFleeRange();
+        isPlayerInSpecialSkillRange = entity.CheckPlayerInSpecialSkillRange();
     }
 
     public override void Enter()
     {
         base.Enter();
-        entity.SetVelocity(stateData.movementSpeed);
     }
 
     public override void Exit()
