@@ -14,7 +14,7 @@ public class MainMenu : MonoBehaviour
 
     public void PlayGame()
     {
-        Selected_SoundEffectPlay();
+        menuAudioSource.PlayOneShot(selected_AudioClip.GetAudioClip());
         title_transition.SetTrigger("Start");
         levelLoader.LoadNextLevel();
     }
@@ -24,8 +24,4 @@ public class MainMenu : MonoBehaviour
         Application.Quit();
     }
 
-    void Selected_SoundEffectPlay()
-    {
-        menuAudioSource.PlayOneShot(selected_AudioClip.GetAudioClip());
-    }
 }

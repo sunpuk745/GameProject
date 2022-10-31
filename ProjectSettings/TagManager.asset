@@ -8,6 +8,8 @@ TagManager:
   - Teleporter
   - Hazard
   - Interactable
+  - SceneChanger
+  - NPC
   layers:
   - Default
   - TransparentFX

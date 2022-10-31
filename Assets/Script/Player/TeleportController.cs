@@ -1,22 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Cinemachine;
 
 public class TeleportController : MonoBehaviour
 {
     //Teleporter
     private GameObject currentTeleporter;
+    private GameObject currentSceneChanger;
     // InteractableObejct
     public GameObject interactable;
 
     float destinationRoomNumber;
+    int destinationSceneNumber;
 
     [SerializeField] private CinemachineVirtualCamera vcamRoom1;
     [SerializeField] private CinemachineVirtualCamera vcamRoom2;
     [SerializeField] private CinemachineVirtualCamera vcamRoom3;
     [SerializeField] private CinemachineVirtualCamera vcamRoom4;
     [SerializeField] private CinemachineVirtualCamera vcamRoom5;
+
+    [SerializeField] private AudioSource teleportSound;
 
 
     void Start()
@@ -35,8 +40,14 @@ public class TeleportController : MonoBehaviour
         {
             if (currentTeleporter != null)
             {
+                teleportSound.Play();
                 transform.position = currentTeleporter.GetComponent<Teleporter>().GetDestination().position;
                 ChangeCamToRoom();
+            }
+            if (currentSceneChanger != null)
+            {
+                teleportSound.Play();
+                SceneManager.LoadScene(destinationSceneNumber);
             }
         }
     }
@@ -50,6 +61,12 @@ public class TeleportController : MonoBehaviour
             currentTeleporter = collision.gameObject;
             destinationRoomNumber = currentTeleporter.GetComponent<Teleporter>().GetDestinationRoomNumber();
         }
+        if (collision.CompareTag("SceneChanger"))
+        {
+            interactable.SetActive(true);
+            currentSceneChanger = collision.gameObject;
+            destinationSceneNumber = currentSceneChanger.GetComponent<MoonTeleporter>().GetDestinationSceneNumber();
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -60,6 +77,14 @@ public class TeleportController : MonoBehaviour
             if (collision.gameObject == currentTeleporter)
             currentTeleporter = null;
             destinationRoomNumber = 0;
+            interactable.SetActive(false);
+        }
+
+        if (collision.CompareTag("SceneChanger"))
+        {
+            if (collision.gameObject == currentSceneChanger)
+            currentSceneChanger = null;
+            destinationSceneNumber = 0;
             interactable.SetActive(false);
         }
     }

@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public float playerMaxHP = 100f;
     public float currentHealth;
+
+    [SerializeField] private GameObject healthBar;
 
 
     void Awake()
@@ -24,6 +27,22 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         currentHealth = playerMaxHP;
+    }
+    private void Update()
+    {
+        Scene scene = SceneManager.GetActiveScene();
+        if (scene.buildIndex == 0)
+        {
+            healthBar.SetActive(false);
+        }
+        if (scene.buildIndex == 1)
+        {
+            healthBar.SetActive(false);
+        }
+
+        else{
+            healthBar.SetActive(true);
+        }
     }
 
     public void DecreaseHP(float damageAmount)
