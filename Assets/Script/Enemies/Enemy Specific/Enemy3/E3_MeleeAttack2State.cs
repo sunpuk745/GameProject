@@ -14,6 +14,11 @@ public class E3_MeleeAttack2State : MeleeAttackState
     public override void DoChecks()
     {
         base.DoChecks();
+
+        if (Time.time >= enemy.specialAttackState.startTime + enemy.specialAttackStateData.specialAttackCooldown)
+        {
+            enemy.canUseSpecialAttack = true;
+        }
     }
 
     public override void Enter()
@@ -39,7 +44,15 @@ public class E3_MeleeAttack2State : MeleeAttackState
         {
             if (isPlayerInMeleeRange)
             {
-                stateMachine.ChangeState(enemy.meleeAttack1State);
+                if (enemy.canUseSpecialAttack)
+                {
+                    enemy.canUseSpecialAttack = false;
+                    stateMachine.ChangeState(enemy.specialAttackState);
+                }
+                else
+                {
+                    stateMachine.ChangeState(enemy.meleeAttack1State);
+                }
             }
             else
             {

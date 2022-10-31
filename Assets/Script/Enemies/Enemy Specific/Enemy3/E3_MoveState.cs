@@ -14,6 +14,11 @@ public class E3_MoveState : MoveState
     public override void DoChecks()
     {
         base.DoChecks();
+
+        if (Time.time >= enemy.specialAttackState.startTime + enemy.specialAttackStateData.specialAttackCooldown)
+        {
+            enemy.canUseSpecialAttack = true;
+        }
     }
 
     public override void Enter()
@@ -41,19 +46,15 @@ public class E3_MoveState : MoveState
             entity.Flip();
         }
 
-        if (isPlayerInMeleeRange && !enemy.canUseSpecialAttack)
-        {
-            stateMachine.ChangeState(enemy.meleeAttack1State);
-        }
-        else if (isPlayerInSpecialSkillRange && enemy.canUseSpecialAttack)
+        
+        if (isPlayerInSpecialSkillRange && enemy.canUseSpecialAttack)
         {
             enemy.canUseSpecialAttack = false;
             stateMachine.ChangeState(enemy.specialAttackState);
         }
-
-        if (Time.time >= enemy.specialAttackState.startTime + enemy.specialAttackStateData.specialAttackCooldown)
+        else if (isPlayerInMeleeRange && !enemy.canUseSpecialAttack)
         {
-            enemy.canUseSpecialAttack = true;
+            stateMachine.ChangeState(enemy.meleeAttack1State);
         }
     }
 

@@ -14,6 +14,11 @@ public class E3_MeleeAttack1State : MeleeAttackState
     public override void DoChecks()
     {
         base.DoChecks();
+
+        if (Time.time >= enemy.specialAttackState.startTime + enemy.specialAttackStateData.specialAttackCooldown)
+        {
+            enemy.canUseSpecialAttack = true;
+        }
     }
 
     public override void Enter()
