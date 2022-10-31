@@ -29,7 +29,7 @@ public class RangeAttackState : AttackState
 
         Magic = GameObject.Instantiate(stateData.Magic, attackPosition.position, attackPosition.rotation);
         magicScript =  Magic.GetComponent<Magic>();
-        magicScript.FireMagic(stateData.MagicDamage);
+        //magicScript.FireMagic(stateData.MagicDamage);
     }
     public override void Exit()
     {

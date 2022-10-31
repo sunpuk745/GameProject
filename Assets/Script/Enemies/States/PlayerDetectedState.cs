@@ -12,6 +12,7 @@ public class PlayerDetectedState : State
     protected bool performCloseRangeAction;
     protected bool DetectPlayerInRange;
     protected bool isPlayerInFleeRange;
+    protected bool usePushMagic;
 
     public PlayerDetectedState(Entity entity, FiniteStateMachine stateMachine, string animBoolName, Data_PlayerDetected stateData) : base(entity, stateMachine, animBoolName)
     {

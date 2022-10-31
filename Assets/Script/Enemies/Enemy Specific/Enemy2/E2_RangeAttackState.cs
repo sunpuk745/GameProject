@@ -19,6 +19,8 @@ public class E2_RangeAttackState : RangeAttackState
     public override void Enter()
     {
         base.Enter();
+
+        magicScript.FireMagic(stateData.MagicDamage);
     }
 
     public override void Exit()

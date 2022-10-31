@@ -35,9 +35,9 @@ public class E2_RangePushState : RangeAttackState
     {
         base.LogicUpdate();
 
-        if (DetectPlayerInRange)
+        if (DetectPlayerInRange && Time.time >= startTime + stateData.idleTimeBeforeChangeState)
         {
-            stateMachine.ChangeState(enemy.playerDetectedState);
+            stateMachine.ChangeState(enemy.idleState);
         }
     }
 

@@ -104,9 +104,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -1996111069
+  m_SortingLayer: 3
+  m_SortingOrder: 3
   m_Sprite: {fileID: 1614451589, guid: f632cb44a12e8ea4bb7a1fa777385a4e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -151,6 +151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   newPlayerMovement: {fileID: 0}
+  enemy: {fileID: 0}
   airPushRadius: 0.9
   whatIsPlayer:
     serializedVersion: 2

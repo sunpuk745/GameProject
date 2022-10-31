@@ -32,7 +32,7 @@ public class E2_IdleState : IdleState
     {
         base.LogicUpdate();
 
-        if (DetectPlayerInRange)
+        if (DetectPlayerInRange && isIdleTimeOver)
         {
             stateMachine.ChangeState(enemy.playerDetectedState);
         }

@@ -38,7 +38,7 @@ public class NewPlayerMovement : MonoBehaviour
     [SerializeField] private float attackDamage = 10f;
     [SerializeField] private float stunDamageAmount = 1f;
     private float attackingTime;
-    private int attackedDirection;
+    //private int attackedDirection;
     private bool isAttacking;
     private AttackDetails attackDetails;
     [SerializeField] private Transform attackPos;
@@ -275,14 +275,14 @@ public class NewPlayerMovement : MonoBehaviour
     {
         gameManager.DecreaseHP(attackDetails.damageAmount);
 
-        if (attackDetails.position.x < transform.position.x)
-        {
-            attackedDirection = 1;
-        }
-        else
-        {
-            attackedDirection = -1;
-        }
+        // if (attackDetails.position.x < transform.position.x)
+        // {
+        //     attackedDirection = 1;
+        // }
+        // else
+        // {
+        //     attackedDirection = -1;
+        // }
 
         //Knockback(attackedDirection);
     }
