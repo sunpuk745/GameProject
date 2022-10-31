@@ -138,6 +138,7 @@ MonoBehaviour:
   bgm: {fileID: 3300259213087624812}
   transition: {fileID: 4290311455751106394}
   waitBeforeLoadScene: 2.5
+  loadSceneNumber: 0
   fadeInSoundVolume: 0.2
   fadeInSoundDuration: 5
   fadeOutSoundVolume: 0
@@ -156,7 +157,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 0
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
