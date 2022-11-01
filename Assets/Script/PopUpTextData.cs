@@ -10,6 +10,23 @@ public class PopUpTextData : MonoBehaviour
     [SerializeField] private TMP_Text popUpText;
     [SerializeField] private float closingTime;
     [SerializeField] private AudioSource closeSound;
+    private bool IsOpen = false;
+
+    void Update()
+    {
+        // Teleport
+        if (Input.GetKeyDown(KeyCode.E) && IsOpen == true)
+        {
+            ClosePopUpBox();
+        }
+        if (popUpBox.activeSelf == true)
+        {
+            IsOpen = true;
+        }
+        else{
+            IsOpen = false;
+        }
+    }
     
     public GameObject GetPopUpBox()
     {
