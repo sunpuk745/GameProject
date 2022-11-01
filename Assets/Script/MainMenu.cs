@@ -24,4 +24,8 @@ public class MainMenu : MonoBehaviour
         Application.Quit();
     }
 
+    public void PlaySound()
+    {
+        menuAudioSource.PlayOneShot(selected_AudioClip.GetAudioClip());
+    }
 }

@@ -6,9 +6,11 @@ using DG.Tweening;
 
 public class NextSceneLoader : MonoBehaviour
 {
+    [SerializeField] private int loadSceneNumber;
+
     void OnEnable()
     {
         DOTween.KillAll();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene(loadSceneNumber);
     }
 }
