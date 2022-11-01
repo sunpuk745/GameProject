@@ -5169,6 +5169,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8814236593902111211, guid: e0a5786efcc9d1f4baaedadad356acc1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e0a5786efcc9d1f4baaedadad356acc1, type: 3}
 --- !u!1 &1759152152
@@ -19787,6 +19791,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactableSignal: {fileID: 2562666473461030130}
+  openSound: {fileID: 0}
 --- !u!1 &8027656322996565132
 GameObject:
   m_ObjectHideFlags: 0
@@ -19856,6 +19861,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8814236592730284134, guid: e0a5786efcc9d1f4baaedadad356acc1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8814236593902111211, guid: e0a5786efcc9d1f4baaedadad356acc1, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
