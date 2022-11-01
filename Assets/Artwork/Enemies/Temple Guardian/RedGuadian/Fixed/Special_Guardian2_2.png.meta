@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 3f9f91c8635d2414cbd83bab317b9858
+guid: c0cf0a5437af1f54888d6207b3540eb3
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -117,7 +117,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: dead_0
+      name: Special_Guardian2_2_0
       rect:
         serializedVersion: 2
         x: 0
@@ -131,14 +131,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a9ddf6f5538f5ca4a90d4efa7a08d421
-      internalID: 631721482
+      spriteID: 659b87f9c28b3404da1f0ac780785764
+      internalID: -998356557
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dead_1
+      name: Special_Guardian2_2_1
       rect:
         serializedVersion: 2
         x: 160
@@ -152,14 +152,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 124978bfdb8cc8647a45006dc49734ab
-      internalID: -1547881401
+      spriteID: 02e7985c5fcbed246bb9617fda491ff6
+      internalID: -1783619562
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dead_2
+      name: Special_Guardian2_2_2
       rect:
         serializedVersion: 2
         x: 320
@@ -173,14 +173,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bd2e6ee7818d7ea4dbebb3d01749995e
-      internalID: 431424735
+      spriteID: 5d4758b2fc62da24aa7aadd950426386
+      internalID: 1345624249
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dead_3
+      name: Special_Guardian2_2_3
       rect:
         serializedVersion: 2
         x: 480
@@ -194,14 +194,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 954ca076016a8364595be917e2ec4f05
-      internalID: -1342471910
+      spriteID: 9fbd2a41684ee034687a70291397cf44
+      internalID: 1456869372
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dead_4
+      name: Special_Guardian2_2_4
       rect:
         serializedVersion: 2
         x: 640
@@ -215,14 +215,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7fd7dc157c6ca14409f751fa7e1aa490
-      internalID: -909740869
+      spriteID: 1721cf5da936be24d9137c5a3c8150df
+      internalID: -2049980435
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dead_5
+      name: Special_Guardian2_2_5
       rect:
         serializedVersion: 2
         x: 800
@@ -236,14 +236,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1f53ac8d81484d1458082a5913ce0af8
-      internalID: -136713179
+      spriteID: e1861f6655193bf4a8a52d0a952971d7
+      internalID: 1411223360
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dead_6
+      name: Special_Guardian2_2_6
       rect:
         serializedVersion: 2
         x: 960
@@ -257,14 +257,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ca0fcb03ff1e2114babbb29e0c6ac83f
-      internalID: -1744230372
+      spriteID: 3a17ef646fefc734f82a428b2cc83389
+      internalID: -54024184
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dead_7
+      name: Special_Guardian2_2_7
       rect:
         serializedVersion: 2
         x: 1120
@@ -278,14 +278,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 72c9dd3556b914e42b7461a2bd4e9c87
-      internalID: 310316671
+      spriteID: 4fc655ca81f01744386aad69be50c08d
+      internalID: 1842687464
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dead_8
+      name: Special_Guardian2_2_8
       rect:
         serializedVersion: 2
         x: 1280
@@ -299,14 +299,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dcd08ef3433defb4e9694f4710d49d93
-      internalID: 1043027066
+      spriteID: d52e06b341fc5724c82784fc0f1b3ac7
+      internalID: 2092252913
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dead_9
+      name: Special_Guardian2_2_9
       rect:
         serializedVersion: 2
         x: 1440
@@ -320,8 +320,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4ca65cabace36fe4cbea6ac214196f84
-      internalID: 116942483
+      spriteID: e8e5ea4e8e67ca54589ccc396740d523
+      internalID: -641172719
       vertices: []
       indices: 
       edges: []
@@ -337,16 +337,16 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      dead_7: 310316671
-      dead_8: 1043027066
-      dead_4: -909740869
-      dead_3: -1342471910
-      dead_9: 116942483
-      dead_2: 431424735
-      dead_5: -136713179
-      dead_6: -1744230372
-      dead_0: 631721482
-      dead_1: -1547881401
+      Special_Guardian2_2_8: 2092252913
+      Special_Guardian2_2_9: -641172719
+      Special_Guardian2_2_7: 1842687464
+      Special_Guardian2_2_4: -2049980435
+      Special_Guardian2_2_0: -998356557
+      Special_Guardian2_2_5: 1411223360
+      Special_Guardian2_2_1: -1783619562
+      Special_Guardian2_2_6: -54024184
+      Special_Guardian2_2_2: 1345624249
+      Special_Guardian2_2_3: 1456869372
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

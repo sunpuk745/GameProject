@@ -19,6 +19,11 @@ public class E3_Move2State : MoveState
         {
             enemy.canUseSpecialAttack = true;
         }
+
+        if (Time.time >= enemy.warpAttackState.startTime + enemy.warpAttackStateData.specialAttackCooldown)
+        {
+            enemy.canUseWarpAttack = true;
+        }
     }
 
     public override void Enter()
@@ -54,6 +59,11 @@ public class E3_Move2State : MoveState
         else if (isPlayerInMeleeRange && !enemy.canUseSpecialAttack)
         {
             stateMachine.ChangeState(enemy.meleeAttack1Phase2State);
+        }
+        else if (!isPlayerInMeleeRange && enemy.canUseWarpAttack)
+        {
+            enemy.canUseWarpAttack = false;
+            stateMachine.ChangeState(enemy.warpAttackState);
         }
 
     }

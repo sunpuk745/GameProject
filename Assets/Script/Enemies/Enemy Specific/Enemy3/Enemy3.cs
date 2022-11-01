@@ -5,6 +5,7 @@ using UnityEngine;
 public class Enemy3 : Entity
 {
     public E3_MoveState moveState { get; private set; }
+    public E3_Move2State move2State { get; private set; }
     public E3_MeleeAttack1State meleeAttack1State { get; private set; }
     public E3_MeleeAttack1Phase2State meleeAttack1Phase2State { get; private set; }
     public E3_MeleeAttack2State meleeAttack2State { get; private set; }
@@ -12,7 +13,7 @@ public class Enemy3 : Entity
     public E3_SpecialAttackState specialAttackState { get; private set; }
     public E3_SpecialAttackPhase2State specialAttackPhase2State { get; private set; }
     public E3_ChangePhaseState changePhaseState { get; private set; }
-    public E3_Move2State move2State { get; private set; }
+    public E3_WarpAttackState warpAttackState { get; private set; } 
 
     [SerializeField]private Data_MoveState moveStateData;
     [SerializeField]private Data_MoveState move2StateData;
@@ -24,6 +25,7 @@ public class Enemy3 : Entity
 
     public Data_MeleeAttackState specialAttackStateData;
     public Data_MeleeAttackState specialAttackPhase2StateData;
+    public Data_MeleeAttackState warpAttackStateData;
 
     public GameObject player;
 
@@ -48,8 +50,10 @@ public class Enemy3 : Entity
         specialAttackState = new E3_SpecialAttackState(this, stateMachine, "specialAtk", specialAttackPos, specialAttackStateData, this);
         specialAttackPhase2State = new E3_SpecialAttackPhase2State(this, stateMachine, "specialAtkPhase2", specialAttackPos, specialAttackPhase2StateData, this);
         changePhaseState = new E3_ChangePhaseState(this, stateMachine, "changePhase", changePhaseStateData, this);
+        warpAttackState = new E3_WarpAttackState(this, stateMachine, "warpAtk", meleeAttack1Pos, warpAttackStateData, this);
 
         stateMachine.Initialize(moveState);
+        canUseWarpAttack = false;
         canUseSpecialAttack = false;
         alreadyChangedPhase = false;
     }
