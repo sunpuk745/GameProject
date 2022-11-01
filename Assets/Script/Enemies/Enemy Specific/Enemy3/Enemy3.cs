@@ -28,6 +28,7 @@ public class Enemy3 : Entity
     public Data_MeleeAttackState warpAttackStateData;
 
     public GameObject player;
+    public GameObject archer;
 
     public bool canUseSpecialAttack;
     public bool canUseWarpAttack;

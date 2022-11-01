@@ -5147,6 +5147,7 @@ MonoBehaviour:
   specialAttackPhase2StateData: {fileID: 11400000, guid: 2328e788442c0b548a57e0a488d3d466, type: 2}
   warpAttackStateData: {fileID: 11400000, guid: 9bfd8a2b4249ea54a979be1520c3f80e, type: 2}
   player: {fileID: 2104675801}
+  archer: {fileID: 8735919290891744904, guid: ac8c5fb6eee45ff4f8db7f51ca32e261, type: 3}
   canUseSpecialAttack: 0
   canUseWarpAttack: 0
   meleeAttack1Pos: {fileID: 29056464}
