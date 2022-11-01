@@ -5335,7 +5335,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1683405585}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.068, y: -0.039, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5456,6 +5456,7 @@ MonoBehaviour:
   groundCheck: {fileID: 438408766}
   playerPos: {fileID: 0}
   currentHealth: 0
+  isImmortal: 0
   idleStateData: {fileID: 11400000, guid: a2b9a525a6d7ba74b992de6b10275ca4, type: 2}
   moveStateData: {fileID: 11400000, guid: 8f1d570e8b9797f469de48d2898166a4, type: 2}
   playerDetectedData: {fileID: 11400000, guid: de8c070e87b022c40836f77a9d11b753, type: 2}
@@ -5548,12 +5549,19 @@ MonoBehaviour:
   groundCheck: {fileID: 1733266955}
   playerPos: {fileID: 0}
   currentHealth: 0
+  isImmortal: 0
   moveStateData: {fileID: 11400000, guid: 146f32aee1800af479914c0bdcdd8ac0, type: 2}
+  move2StateData: {fileID: 11400000, guid: 146f32aee1800af479914c0bdcdd8ac0, type: 2}
   meleeAttack1StateData: {fileID: 11400000, guid: 47a2c6c7b45322b49a44f1fa280adbfc, type: 2}
+  meleeAttack1Phase2StateData: {fileID: 11400000, guid: 0eed86557f62c6b4ab95beba15280eaf, type: 2}
+  meleeAttack2Phase2StateData: {fileID: 11400000, guid: bac2290b461c20f4299e3335cd09b61c, type: 2}
   meleeAttack2StateData: {fileID: 11400000, guid: 2bdc623d871363242bc605d47225c651, type: 2}
+  changePhaseStateData: {fileID: 11400000, guid: 39abe9b7684adcf4a8ea41c44cd97d67, type: 2}
   specialAttackStateData: {fileID: 11400000, guid: 4690a9041ca049445a04c18b7d374cd9, type: 2}
+  specialAttackPhase2StateData: {fileID: 11400000, guid: 2328e788442c0b548a57e0a488d3d466, type: 2}
   player: {fileID: 2104675801}
   canUseSpecialAttack: 0
+  canUseWarpAttack: 0
   meleeAttack1Pos: {fileID: 29056464}
   meleeAttack2Pos: {fileID: 300145172}
   specialAttackPos: {fileID: 1211867515}
@@ -5565,7 +5573,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2094574718}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.83, y: -3.71, z: 0}
+  m_LocalPosition: {x: 27.21, y: -2.75, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -10764,11 +10772,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7345043126651562058, guid: 9e81790404c5ebd4e886f1a170605e89, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 31.79
+      value: -9.68
       objectReference: {fileID: 0}
     - target: {fileID: 7345043126651562058, guid: 9e81790404c5ebd4e886f1a170605e89, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.04
+      value: -3.94
       objectReference: {fileID: 0}
     - target: {fileID: 7345043126651562058, guid: 9e81790404c5ebd4e886f1a170605e89, type: 3}
       propertyPath: m_LocalPosition.z

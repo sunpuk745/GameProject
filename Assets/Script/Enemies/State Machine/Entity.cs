@@ -31,12 +31,15 @@ public class Entity : MonoBehaviour
 
     protected bool isStunned;
     protected bool isDead;
+    public bool isImmortal;
 
     public virtual void Start() 
     {
         facingDirection = 1;
         currentHealth = entityData.maxHealth;
         currentStunResistance = entityData.stunResistance;
+
+        isImmortal = false;
 
         aliveGameObject = transform.Find("Alive").gameObject;
         rb = aliveGameObject.GetComponent<Rigidbody2D>();
@@ -134,12 +137,15 @@ public class Entity : MonoBehaviour
 
     public virtual void Damage(AttackDetails attackDetails)
     {
-        lastDamageTime = Time.time;
+        if (!isImmortal && !isDead)
+        {
+            lastDamageTime = Time.time;
 
-        currentHealth -= attackDetails.damageAmount;
-        currentStunResistance -= attackDetails.stunDamageAmount;
+            currentHealth -= attackDetails.damageAmount;
+            currentStunResistance -= attackDetails.stunDamageAmount;
+        }
 
-        if (!isDead)
+        if (!isDead && !isImmortal)
         {
             DamageKnock(entityData.DamageKnockSpeed);
         }
