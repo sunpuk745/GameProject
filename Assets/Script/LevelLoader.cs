@@ -9,8 +9,7 @@ public class LevelLoader : MonoBehaviour
     public AudioSource bgm;
     public Animator transition;
     public float waitBeforeLoadScene = 1f;
-    [SerializeField] private int loadSceneNumber;
-    [Space(10)]
+    
     [SerializeField] private float fadeInSoundVolume;
     [SerializeField] private float fadeInSoundDuration;
     [Space(10)]
@@ -25,7 +24,7 @@ public class LevelLoader : MonoBehaviour
     public void LoadNextLevel()
     {
         StartCoroutine(musicFadeOut());
-        StartCoroutine(LoadLevel(loadSceneNumber));
+        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
     }
 
     IEnumerator LoadLevel(int levelIndex)

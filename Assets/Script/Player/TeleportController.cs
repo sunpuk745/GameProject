@@ -13,7 +13,6 @@ public class TeleportController : MonoBehaviour
     public GameObject interactable;
 
     float destinationRoomNumber;
-    int destinationSceneNumber;
 
     [SerializeField] private CinemachineVirtualCamera vcamRoom1;
     [SerializeField] private CinemachineVirtualCamera vcamRoom2;
@@ -22,6 +21,7 @@ public class TeleportController : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera vcamRoom5;
 
     [SerializeField] private AudioSource teleportSound;
+    [SerializeField] private LevelLoader levelLoader;
 
 
     void Start()
@@ -47,7 +47,7 @@ public class TeleportController : MonoBehaviour
             if (currentSceneChanger != null)
             {
                 teleportSound.Play();
-                SceneManager.LoadScene(destinationSceneNumber);
+                levelLoader.LoadNextLevel();
             }
         }
     }
@@ -65,7 +65,6 @@ public class TeleportController : MonoBehaviour
         {
             interactable.SetActive(true);
             currentSceneChanger = collision.gameObject;
-            destinationSceneNumber = currentSceneChanger.GetComponent<MoonTeleporter>().GetDestinationSceneNumber();
         }
     }
 
@@ -84,7 +83,6 @@ public class TeleportController : MonoBehaviour
         {
             if (collision.gameObject == currentSceneChanger)
             currentSceneChanger = null;
-            destinationSceneNumber = 0;
             interactable.SetActive(false);
         }
     }
