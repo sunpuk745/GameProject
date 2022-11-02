@@ -37,7 +37,10 @@ public class E3_SpecialAttackPhase2State : MeleeAttackState
 
         if (isAnimationFinished)
         {
+            enemy.canUseSpecialAttack = false;
             stateMachine.ChangeState(enemy.move2State);
+
+            GameObject.Instantiate(enemy.archer, enemy.aliveGameObject.transform.position + enemy.archerOffsetSpecial, enemy.aliveGameObject.transform.rotation);
         }
     }
 

@@ -36,17 +36,7 @@ public class E2_FleeState : FleeState
         }
         else if (isDetectingWall || !isDetectingLedge)
         {
-            if (entity.facingDirection == 1)
-            {
-                enemy.transform.position = new Vector2(entity.playerPos.position.x - stateData.teleportDistance, entity.playerPos.position.y + 1.5f);
-            }
-            else if (entity.facingDirection == -1)
-            {
-                enemy.transform.position = new Vector2(entity.playerPos.position.x + stateData.teleportDistance, entity.playerPos.position.y + 1.5f);
-            }
-            
-            entity.SetVelocity(0f);
-            stateMachine.ChangeState(enemy.playerDetectedState);
+            stateMachine.ChangeState(enemy.warpState);
         }
     }
 

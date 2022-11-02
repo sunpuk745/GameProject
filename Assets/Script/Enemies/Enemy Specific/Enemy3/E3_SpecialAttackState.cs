@@ -37,6 +37,7 @@ public class E3_SpecialAttackState : MeleeAttackState
 
         if (isAnimationFinished)
         {
+            enemy.canUseSpecialAttack = false;
             stateMachine.ChangeState(enemy.moveState);
         }
     }

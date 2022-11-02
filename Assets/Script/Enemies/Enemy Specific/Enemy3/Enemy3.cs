@@ -13,7 +13,7 @@ public class Enemy3 : Entity
     public E3_SpecialAttackState specialAttackState { get; private set; }
     public E3_SpecialAttackPhase2State specialAttackPhase2State { get; private set; }
     public E3_ChangePhaseState changePhaseState { get; private set; }
-    public E3_WarpAttackState warpAttackState { get; private set; } 
+    public E3_WarpAttackState warpAttackState { get; private set; }
 
     [SerializeField]private Data_MoveState moveStateData;
     [SerializeField]private Data_MoveState move2StateData;
@@ -29,10 +29,15 @@ public class Enemy3 : Entity
 
     public GameObject player;
     public GameObject archer;
+    [SerializeField]private GameObject hitParticle;
+    [SerializeField]private GameObject hitParticle2;
 
     public bool canUseSpecialAttack;
     public bool canUseWarpAttack;
     protected bool alreadyChangedPhase;
+
+    public Vector3 archerOffset;
+    public Vector3 archerOffsetSpecial;
 
     [SerializeField]private Transform meleeAttack1Pos;
     [SerializeField]private Transform meleeAttack2Pos;
@@ -63,6 +68,18 @@ public class Enemy3 : Entity
     {
         base.Damage(attackDetails);
 
+        if (!isImmortal)
+        {
+            if (!alreadyChangedPhase)
+            {
+                Instantiate(hitParticle, aliveGameObject.transform.position, Quaternion.Euler(0f, 0f, Random.Range(0f, 360f)));
+            }
+            else
+            {
+                Instantiate(hitParticle2, aliveGameObject.transform.position, Quaternion.Euler(0f, 0f, Random.Range(0f, 360f)));
+            }
+        }
+        
         if (currentHealth <= 50 && !alreadyChangedPhase)
         {
             alreadyChangedPhase = true;

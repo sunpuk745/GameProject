@@ -32,6 +32,7 @@ public class Entity : MonoBehaviour
     protected bool isStunned;
     protected bool isDead;
     public bool isImmortal;
+    public bool DrawGizmos;
 
     public virtual void Start() 
     {
@@ -175,7 +176,6 @@ public class Entity : MonoBehaviour
     public virtual void Turn()
     {
         facingDirection *= -1;
-        //.transform.localScale = new Vector2(transform.localScale.x * -1, transform.localScale.y);
         aliveGameObject.transform.Rotate(0f, 180f, 0f);
     }
 
@@ -194,13 +194,17 @@ public class Entity : MonoBehaviour
         Gizmos.DrawWireSphere(playerCheck.position + (Vector3)(Vector2.right * facingDirection * entityData.minAggroDistance), 0.2f);
         Gizmos.DrawWireSphere(playerCheck.position + (Vector3)(Vector2.right * facingDirection * entityData.maxAggroDistance), 0.2f);
 
-        Gizmos.color = entityData.gizmoColor;
-        Gizmos.DrawCube((Vector2)playerCheck.position + entityData.playerCheckOffset, entityData.playerDetectRange);
+        if (DrawGizmos)
+        {
+            Gizmos.color = entityData.gizmoColor;
+            Gizmos.DrawCube((Vector2)playerCheck.position + entityData.playerCheckOffset, entityData.playerDetectRange);
 
-        Gizmos.color = entityData.gizmoFleeColor;
-        Gizmos.DrawCube((Vector2)playerCheck.position + entityData.playerFleeRangeOffset, entityData.playerFleeRange);
+            Gizmos.color = entityData.gizmoFleeColor;
+            Gizmos.DrawCube((Vector2)playerCheck.position + entityData.playerFleeRangeOffset, entityData.playerFleeRange);
 
-        Gizmos.color = entityData.gizmoSpecialSkillRangeColor;
-        Gizmos.DrawCube((Vector2)playerCheck.position + entityData.specialSkillRangeOffset, entityData.specialSkillRange);
+            Gizmos.color = entityData.gizmoSpecialSkillRangeColor;
+            Gizmos.DrawCube((Vector2)playerCheck.position + entityData.specialSkillRangeOffset, entityData.specialSkillRange);
+        }
+        
     }
 }

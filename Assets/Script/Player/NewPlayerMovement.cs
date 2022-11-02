@@ -12,6 +12,7 @@ public class NewPlayerMovement : MonoBehaviour
     private bool isCrouched = false;
     // InteractableObejct
     public GameObject interactable;
+    [SerializeField]private GameObject hitParticles;
     //One-way platform
     public bool fallThrough => Input.GetKey(KeyCode.S);
 
@@ -274,6 +275,8 @@ public class NewPlayerMovement : MonoBehaviour
     private void Damage(AttackDetails attackDetails)
     {
         gameManager.DecreaseHP(attackDetails.damageAmount);
+
+        Instantiate(hitParticles, transform.position, Quaternion.Euler(0f, 0f, Random.Range(0f, 360f)));
 
         // if (attackDetails.position.x < transform.position.x)
         // {

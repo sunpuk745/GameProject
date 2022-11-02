@@ -19,3 +19,4 @@ MonoBehaviour:
   projectileDamage: 20
   projectileSpeed: 12
   projectileTravelDistance: 10
+  magicSpawnOffset: {x: 0, y: 0.3, z: 0}

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 186195df6000ebb42ac981be35d29bb5, type: 3}
   m_Name: E2_FleeStateData
   m_EditorClassIdentifier: 
-  fleeTime: 0.5
+  fleeTime: 1
   fleeTimeCooldown: 3
   fleeSpeed: 12
   teleportDistance: 10

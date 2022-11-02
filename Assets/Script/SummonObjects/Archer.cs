@@ -18,26 +18,26 @@ public class Archer : MonoBehaviour
     public Vector2 attackRangeOffset = Vector2.zero;
 
     private bool isAttackFinished;
-    private bool Reversed;
+    //private bool Reversed;
 
     [SerializeField]private LayerMask whatIsPlayer;
 
     [SerializeField]private Transform attackPos;
 
-    private void Start() 
+    private void Start()
     {
         enemy = GameObject.Find("Enemy3").GetComponent<Entity>();
         anim = GetComponent<Animator>();
 
         isAttackFinished = false;
-        Reversed = false;
+        //Reversed = false;
 
         startXPos = transform.position.x;
         startYPos = transform.position.y;
 
         if (enemy.facingDirection == -1)
         {
-            Reversed = true;
+            //Reversed = true;
             transform.Rotate(0f, 180f, 0f);
         }
     }

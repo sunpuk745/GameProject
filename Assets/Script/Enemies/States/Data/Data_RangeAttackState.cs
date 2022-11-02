@@ -16,4 +16,5 @@ public class Data_RangeAttackState : ScriptableObject
     public float projectileSpeed = 12f;
     public float projectileTravelDistance = 10f;
     
+    public Vector3 magicSpawnOffset;
 }

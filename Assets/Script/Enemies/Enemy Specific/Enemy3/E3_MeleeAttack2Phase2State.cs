@@ -30,7 +30,7 @@ public class E3_MeleeAttack2Phase2State : MeleeAttackState
     {
         base.FinishAttack();
 
-        GameObject.Instantiate(enemy.archer, enemy.aliveGameObject.transform.position, enemy.aliveGameObject.transform.rotation);
+        GameObject.Instantiate(enemy.archer, enemy.aliveGameObject.transform.position - enemy.archerOffset, enemy.aliveGameObject.transform.rotation);
     }
 
     public override void LogicUpdate()

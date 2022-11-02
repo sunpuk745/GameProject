@@ -4923,6 +4923,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 2601309838557259871}
   interactable: {fileID: 3933695584970230476}
+  hitParticles: {fileID: 57238422797797938, guid: f86a5db99557f4e4383562f2222f3c28, type: 3}
   movementAcceleration: 75
   maxMoveSpeed: 8
   groundMovementDeceleration: 7

@@ -27,7 +27,7 @@ public class RangeAttackState : AttackState
 
         DetectPlayerInRange = entity.DetectPlayerInRange();
 
-        Magic = GameObject.Instantiate(stateData.Magic, attackPosition.position, attackPosition.rotation);
+        Magic = GameObject.Instantiate(stateData.Magic, attackPosition.position + stateData.magicSpawnOffset, attackPosition.rotation);
         magicScript =  Magic.GetComponent<Magic>();
         //magicScript.FireMagic(stateData.MagicDamage);
     }

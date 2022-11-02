@@ -53,7 +53,6 @@ public class E3_Move2State : MoveState
 
         if (isPlayerInSpecialSkillRange && enemy.canUseSpecialAttack)
         {
-            enemy.canUseSpecialAttack = false;
             stateMachine.ChangeState(enemy.specialAttackPhase2State);
         }
         else if (isPlayerInMeleeRange && !enemy.canUseSpecialAttack)
