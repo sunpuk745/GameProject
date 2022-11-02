@@ -18,6 +18,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Phase1/Puzzle1.unity
     guid: ddd23bfa5631c96498ec3cb19b4a1a83
   - enabled: 1
+    path: Assets/Scenes/Phase1/FirstBossRoom.unity
+    guid: 865fe99434047704eafc2ee89a5f6544
+  - enabled: 1
     path: Assets/Scenes/Phase2/MainMenu2.unity
     guid: b63e4275b9d89734985c8d8290da7fc9
   - enabled: 1
