@@ -4943,7 +4943,7 @@ MonoBehaviour:
   groundCheckSize: {x: 0.49, y: 0.03}
   groundLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 576
   whatIsEnemy:
     serializedVersion: 2
     m_Bits: 256

@@ -40,10 +40,10 @@ public class E2_PlayerDetectedState : PlayerDetectedState
     {
         base.LogicUpdate();
 
-        stateData.distanceToPlayer = Vector2.Distance(enemy.transform.position, entity.playerPos.position);
+        stateData.distanceToPlayer = Vector2.Distance(enemy.transform.position, enemy.player.transform.position);
 
-        if (entity.playerPos.position.x > enemy.aliveGameObject.transform.position.x && enemy.aliveGameObject.transform.localScale.x < 0 
-        || entity.playerPos.position.x < enemy.aliveGameObject.transform.position.x && enemy.aliveGameObject.transform.localScale.x > 0)
+        if (enemy.player.transform.position.x > enemy.aliveGameObject.transform.position.x && enemy.aliveGameObject.transform.localScale.x < 0 
+        || enemy.player.transform.position.x < enemy.aliveGameObject.transform.position.x && enemy.aliveGameObject.transform.localScale.x > 0)
         {
             entity.Flip();
         }

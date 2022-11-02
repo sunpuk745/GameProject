@@ -21,7 +21,6 @@ public class Entity : MonoBehaviour
     [SerializeField]private Transform ledgeCheck;
     [SerializeField]private Transform playerCheck;
     [SerializeField]private Transform groundCheck;
-    public Transform playerPos;
 
     public float currentHealth;
     private float currentStunResistance;
