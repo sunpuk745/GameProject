@@ -8,6 +8,8 @@ public class MainMenu : MonoBehaviour
 {
 
     public AudioSource menuAudioSource;
+    public GameObject howToPlayUI;
+
     [SerializeField] private SoAudioClips selected_AudioClip;
     [SerializeField] private LevelLoader levelLoader;
     [SerializeField] private Animator title_transition;
@@ -21,11 +23,24 @@ public class MainMenu : MonoBehaviour
 
     public void ExitGame()
     {
+        PlaySound();
         Application.Quit();
     }
 
     public void PlaySound()
     {
         menuAudioSource.PlayOneShot(selected_AudioClip.GetAudioClip());
+    }
+
+    public void OpenHowToPlay()
+    {
+        PlaySound();
+        howToPlayUI.SetActive(true);
+    }
+
+    public void CloseHowToPlay()
+    {
+        PlaySound();
+        howToPlayUI.SetActive(false);
     }
 }

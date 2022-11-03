@@ -35,18 +35,13 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         Scene scene = SceneManager.GetActiveScene();
-        if (scene.buildIndex == 0)
-        {
-            healthBar.SetActive(false);
-        }
-        if (scene.buildIndex == 1)
-        {
-            healthBar.SetActive(false);
-        }
-
-        else
+        if (scene.buildIndex == 5 || scene.buildIndex == 12)
         {
             healthBar.SetActive(true);
+        }
+        else
+        {
+            healthBar.SetActive(false);
         }
     }
 
