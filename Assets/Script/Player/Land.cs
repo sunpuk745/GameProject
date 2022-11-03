@@ -9,6 +9,11 @@ public class Land : MonoBehaviour
         if (other.gameObject.tag == "Ground")
         {
             AudioManager.Instance.PlaySFX("Land");
-        }    
+        }
+    }
+
+    private void Damage()
+    {
+        
     }
 }

@@ -72,6 +72,16 @@ public class Archer : MonoBehaviour
         isAttackFinished = true;
     }
 
+    private void PlayBeamSound()
+    {
+        AudioManager.Instance.PlaySFX("ArcherBeam");
+    }
+
+    private void PlayArcherWarp()
+    {
+        AudioManager.Instance.PlaySFX("ArcherWarp");
+    }
+
     public void OnDrawGizmos()
     {
         Gizmos.color = attackGizmoColor;
