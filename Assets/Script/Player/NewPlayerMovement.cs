@@ -15,6 +15,7 @@ public class NewPlayerMovement : MonoBehaviour
     public GameObject interactable;
     [SerializeField]private GameObject hitParticles;
     [SerializeField]private GameObject pauseMenu;
+    public bool isPaused;
 
     [Header("Movement")]
     [SerializeField]private float movementAcceleration = 10f;
@@ -72,6 +73,8 @@ public class NewPlayerMovement : MonoBehaviour
 
     private void Start() 
     {
+        pauseMenu.SetActive(false);
+
         GetCurrentBuildIndex();
 
         gameManager = FindObjectOfType<GameManager>();
@@ -81,14 +84,18 @@ public class NewPlayerMovement : MonoBehaviour
     }
 
     private void Update() 
-    {  
+    {
+
         coyoteTimeCounter -= Time.deltaTime;
         attackingTime -= Time.deltaTime;
 
         CheckKnockback();
         CheckCollision();
         horizontalDirection = moveInput;
-        animator.SetFloat("Speed", Mathf.Abs(horizontalDirection));
+        if (!isPaused)
+        {
+            animator.SetFloat("Speed", Mathf.Abs(horizontalDirection));
+        }
         
         if (onGround)
         {
@@ -122,7 +129,7 @@ public class NewPlayerMovement : MonoBehaviour
 
     private void Move()
     {
-        if (canMove && !isAttacking && !isKnockback && !gameManager.isDead)
+        if (canMove && !isAttacking && !isKnockback && !gameManager.isDead && !isPaused)
         {
             rb.AddForce(new Vector2(horizontalDirection, 0f) * movementAcceleration);
             if (Mathf.Abs(rb.velocity.x) > maxMoveSpeed)
@@ -137,11 +144,11 @@ public class NewPlayerMovement : MonoBehaviour
             }
             
         }
-        if(horizontalDirection > 0 && !IsFacingRight && !isAttacking && !isKnockback && !gameManager.isDead)
+        if(horizontalDirection > 0 && !IsFacingRight && !isAttacking && !isKnockback && !gameManager.isDead && !isPaused)
             {
                 Turn();
             }
-        else if(horizontalDirection < 0 && IsFacingRight && !isAttacking && !isKnockback && !gameManager.isDead)
+        else if(horizontalDirection < 0 && IsFacingRight && !isAttacking && !isKnockback && !gameManager.isDead && !isPaused)
             {
                 Turn();
             }
@@ -182,7 +189,7 @@ public class NewPlayerMovement : MonoBehaviour
 
     private void OnJump(InputValue value)
     {
-        if (value.isPressed && coyoteTimeCounter > 0)
+        if (value.isPressed && coyoteTimeCounter > 0 && !isPaused)
         {
             AudioManager.Instance.PlaySFX("Jump");
             rb.velocity = new Vector2(rb.velocity.x , 0f);
@@ -232,13 +239,8 @@ public class NewPlayerMovement : MonoBehaviour
 
     private void OnInteract(InputValue value)
     {
-        if (value.isPressed)
+        if (value.isPressed && !isPaused)
         {
-            // if (popUpTextSystem = null)
-            // {
-            //     popUpTextSystem = GameObject.Find("Player").GetComponent<PopUpTextSystem>();
-            // }
-
             if (popUpTextSystem.currentNpc != null)
             {
                 popUpTextSystem.PopUp();
@@ -250,7 +252,7 @@ public class NewPlayerMovement : MonoBehaviour
 
     private void OnAttack(InputValue value)
     {
-        if (value.isPressed && attackingTime <= 0 && onGround && !isAttacking && !isKnockback)
+        if (value.isPressed && attackingTime <= 0 && onGround && !isAttacking && !isKnockback && !isPaused)
         {
             isAttacking = true;
             AudioManager.Instance.PlaySFX("Slash");
@@ -350,5 +352,53 @@ public class NewPlayerMovement : MonoBehaviour
     public int GetCurrentBuildIndex()
     {
         return SceneManager.GetActiveScene().buildIndex;
+    }
+
+    public void PauseGame()
+    {
+        pauseMenu.SetActive(true);
+        Time.timeScale = 0f;
+        isPaused = true;
+    }
+
+    public void ResumeGame()
+    {
+        pauseMenu.SetActive(false);
+        Time.timeScale = 1f;
+        isPaused = false;
+    }
+
+    private void OnPause(InputValue value)
+    {
+        if (value.isPressed)
+        {
+            if (isPaused)
+            {
+                ResumeGame();
+            }
+            else
+            {
+                PauseGame();
+            }
+        }
+    }
+
+    public void GoToMainMenu()
+    {
+        if (GetCurrentBuildIndex() <= 7)
+        {
+            SceneManager.LoadScene(0);
+        }
+        else
+        {
+            SceneManager.LoadScene(8);
+        }
+        Time.timeScale = 1f;
+    }
+
+    public void ResetScene()
+    {
+        gameManager.RestartScene();
+        Time.timeScale = 1f;
     }
 }
