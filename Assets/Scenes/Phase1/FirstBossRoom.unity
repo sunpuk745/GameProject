@@ -1032,7 +1032,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5008462978439539857, guid: d6201ecf91c1e494aa1da92697cb8288, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.08
       objectReference: {fileID: 0}
     - target: {fileID: 5008462978439539857, guid: d6201ecf91c1e494aa1da92697cb8288, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4417,6 +4417,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4528731609448307900, guid: 36ce1cadf89a9a244b015708df190bf0, type: 3}
+      propertyPath: m_Volume
+      value: 0.071
+      objectReference: {fileID: 0}
     - target: {fileID: 4528731610896020777, guid: 36ce1cadf89a9a244b015708df190bf0, type: 3}
       propertyPath: m_Name
       value: Audio Manager

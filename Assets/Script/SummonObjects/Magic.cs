@@ -19,7 +19,7 @@ public class Magic : MonoBehaviour
     [SerializeField] private Transform damagePos;
 
     private Animator anim;
-
+    public float magicVolume = 0.2f;
     private void Start() 
     {
         anim = GetComponent<Animator>();
@@ -60,7 +60,7 @@ public class Magic : MonoBehaviour
 
     public void PlayIceExplosionSound()
     {
-        AudioManager.Instance.PlaySFX("IceExplosion");
+        AudioManager.Instance.PlaySFX("IceExplosion", (magicVolume));
     }
 
     private void OnDrawGizmos() 
