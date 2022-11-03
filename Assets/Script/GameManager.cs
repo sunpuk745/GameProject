@@ -51,10 +51,14 @@ public class GameManager : MonoBehaviour
 
         if (currentHealth <= 0f)
         {
-            //TODO: Die
+            RestartScene();
         }
+    }
 
-        //Debug.Log(currentHealth);
+    public void RestartScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        currentHealth = playerMaxHP;
     }
 
 }
