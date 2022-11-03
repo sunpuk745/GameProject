@@ -34,7 +34,6 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(currentHealth);
         Scene scene = SceneManager.GetActiveScene();
         if (scene.buildIndex == 0)
         {

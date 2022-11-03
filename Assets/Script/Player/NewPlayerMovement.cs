@@ -284,6 +284,10 @@ public class NewPlayerMovement : MonoBehaviour
     {
         if (!gameManager.isDead && gameManager.currentHealth > 0)
         {
+            if (gameManager == null)
+            {
+                gameManager = FindObjectOfType<GameManager>();
+            }
             gameManager.DecreaseHP(attackDetails.damageAmount);
 
             AudioManager.Instance.PlaySFX("PlayerHit");
