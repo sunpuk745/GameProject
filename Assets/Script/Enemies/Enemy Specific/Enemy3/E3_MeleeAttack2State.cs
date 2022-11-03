@@ -44,22 +44,7 @@ public class E3_MeleeAttack2State : MeleeAttackState
 
         if (isAnimationFinished)
         {
-            if (isPlayerInMeleeRange)
-            {
-                if (enemy.canUseSpecialAttack)
-                {
-                    enemy.canUseSpecialAttack = false;
-                    stateMachine.ChangeState(enemy.specialAttackState);
-                }
-                else
-                {
-                    stateMachine.ChangeState(enemy.meleeAttack1State);
-                }
-            }
-            else
-            {
-                stateMachine.ChangeState(enemy.moveState);
-            }
+            stateMachine.ChangeState(enemy.moveState);
         }
     }
 
