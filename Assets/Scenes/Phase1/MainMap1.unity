@@ -10828,6 +10828,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70a985aadffe7bf40876aa9be849e2a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentNpc: {fileID: 0}
   interactableSignal: {fileID: 1622609996}
   openSound: {fileID: 1893996330}
 --- !u!4 &1039569826 stripped
@@ -16529,6 +16530,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2601309838557259842, guid: 435e14656a2048c46a33e04d2e8ee51d, type: 3}
+      propertyPath: popUpTextSystem
+      value: 
+      objectReference: {fileID: 1039569818}
     - target: {fileID: 2601309838557259843, guid: 435e14656a2048c46a33e04d2e8ee51d, type: 3}
       propertyPath: m_SortingOrder
       value: 1
