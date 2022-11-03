@@ -153,6 +153,7 @@ MonoBehaviour:
   meleeAttack2Phase2StateData: {fileID: 11400000, guid: bac2290b461c20f4299e3335cd09b61c, type: 2}
   meleeAttack2StateData: {fileID: 11400000, guid: 2bdc623d871363242bc605d47225c651, type: 2}
   changePhaseStateData: {fileID: 11400000, guid: 39abe9b7684adcf4a8ea41c44cd97d67, type: 2}
+  deadStateData: {fileID: 11400000, guid: a85422102ab56fa43b9442dd7ce78041, type: 2}
   specialAttackStateData: {fileID: 11400000, guid: 4690a9041ca049445a04c18b7d374cd9, type: 2}
   specialAttackPhase2StateData: {fileID: 11400000, guid: 2328e788442c0b548a57e0a488d3d466, type: 2}
   warpAttackStateData: {fileID: 11400000, guid: 9bfd8a2b4249ea54a979be1520c3f80e, type: 2}

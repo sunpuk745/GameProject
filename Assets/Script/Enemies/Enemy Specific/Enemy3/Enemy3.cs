@@ -83,7 +83,7 @@ public class Enemy3 : Entity
             }
         }
         
-        if (currentHealth <= 50 && !alreadyChangedPhase)
+        if (currentHealth <= 100 && !alreadyChangedPhase)
         {
             alreadyChangedPhase = true;
             stateMachine.ChangeState(changePhaseState);
