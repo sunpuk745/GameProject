@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
     public float playerMaxHP = 100f;
     public float currentHealth;
 
+    public bool isDead;
+
     [SerializeField] private GameObject healthBar;
 
 
@@ -51,7 +53,7 @@ public class GameManager : MonoBehaviour
 
         if (currentHealth <= 0f)
         {
-            RestartScene();
+            isDead = true;
         }
     }
 
@@ -59,6 +61,6 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         currentHealth = playerMaxHP;
+        isDead = false;
     }
-
 }
