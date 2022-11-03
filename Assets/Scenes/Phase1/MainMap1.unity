@@ -4975,7 +4975,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 453003051}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 78.95313, y: -1.51209, z: -10}
+  m_LocalPosition: {x: -7.452304, y: -1.45924, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9363,7 +9363,7 @@ MonoBehaviour:
   vcamRoom4: {fileID: 0}
   vcamRoom5: {fileID: 0}
   teleportSound: {fileID: 1893996330}
-  levelLoader: {fileID: 0}
+  levelLoader: {fileID: 1242246071}
 --- !u!1 &1042591080
 GameObject:
   m_ObjectHideFlags: 0
@@ -12680,6 +12680,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1222466072}
   m_CullTransparentMesh: 1
+--- !u!114 &1242246071 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3300259213087624815, guid: d6201ecf91c1e494aa1da92697cb8288, type: 3}
+  m_PrefabInstance: {fileID: 1151498062}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9799c4261f54ca04f95784f054d43314, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1306543253
 GameObject:
   m_ObjectHideFlags: 0
@@ -14975,7 +14986,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2601309838557259864, guid: 435e14656a2048c46a33e04d2e8ee51d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 79
+      value: -14.31
       objectReference: {fileID: 0}
     - target: {fileID: 2601309838557259864, guid: 435e14656a2048c46a33e04d2e8ee51d, type: 3}
       propertyPath: m_LocalPosition.y
@@ -15019,7 +15030,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3933695584859924495, guid: 435e14656a2048c46a33e04d2e8ee51d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.010000611
+      value: -0.010000038
       objectReference: {fileID: 0}
     - target: {fileID: 3933695584859924495, guid: 435e14656a2048c46a33e04d2e8ee51d, type: 3}
       propertyPath: m_LocalPosition.y
