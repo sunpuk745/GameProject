@@ -9,6 +9,7 @@ public class LevelLoader : MonoBehaviour
     public AudioSource bgm;
     public Animator transition;
     public float waitBeforeLoadScene = 1f;
+    public float waitBeforePlaySound = 1.5f;
     
     [SerializeField] private float fadeInSoundVolume;
     [SerializeField] private float fadeInSoundDuration;
@@ -36,7 +37,7 @@ public class LevelLoader : MonoBehaviour
 
     private IEnumerator musicFadeIn()
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(waitBeforePlaySound);
         bgm.Play();
         bgm.DOFade(fadeInSoundVolume, fadeInSoundDuration);
     }
