@@ -21914,6 +21914,17 @@ Transform:
   m_Father: {fileID: 866957736}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1071925001 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3300259213087624815, guid: d6201ecf91c1e494aa1da92697cb8288, type: 3}
+  m_PrefabInstance: {fileID: 1776845458}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9799c4261f54ca04f95784f054d43314, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1130089957
 GameObject:
   m_ObjectHideFlags: 0
@@ -22879,9 +22890,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1468749721}
-  - component: {fileID: 1468749719}
   - component: {fileID: 1468749722}
-  - component: {fileID: 1468749723}
   m_Layer: 0
   m_Name: Tree
   m_TagString: SceneChanger
@@ -22889,26 +22898,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!95 &1468749719
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1468749718}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 283f4d640961270459b1e8f3935f5d98, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!4 &1468749721
 Transform:
   m_ObjectHideFlags: 0
@@ -22950,19 +22939,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.11, y: 1.4002218}
   m_EdgeRadius: 0
---- !u!114 &1468749723
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1468749718}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ac0f58b182e8274dbbe6bd78d152a40, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  loadSceneNumber: 3
 --- !u!1 &1473357439
 GameObject:
   m_ObjectHideFlags: 0
@@ -30710,6 +30686,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 4291212044481926622}
   interactable: {fileID: 2955360058637711181}
+  hitParticles: {fileID: 0}
   movementAcceleration: 75
   maxMoveSpeed: 8
   groundMovementDeceleration: 7
@@ -30945,6 +30922,7 @@ MonoBehaviour:
   vcamRoom4: {fileID: 1157781334}
   vcamRoom5: {fileID: 136430960}
   teleportSound: {fileID: 2049211822}
+  levelLoader: {fileID: 1071925001}
 --- !u!114 &4291212044481926625
 MonoBehaviour:
   m_ObjectHideFlags: 0
