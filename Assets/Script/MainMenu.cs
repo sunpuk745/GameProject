@@ -43,4 +43,16 @@ public class MainMenu : MonoBehaviour
         PlaySound();
         howToPlayUI.SetActive(false);
     }
+
+    public void DeveloperAdvantage()
+    {
+        PlaySound();
+        SceneManager.LoadScene(8);
+    }
+
+    public void DeveloperAdvantage2()
+    {
+        PlaySound();
+        SceneManager.LoadScene(0);
+    }
 }
