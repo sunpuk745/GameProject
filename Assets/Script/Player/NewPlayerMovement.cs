@@ -14,6 +14,7 @@ public class NewPlayerMovement : MonoBehaviour
     // InteractableObejct
     public GameObject interactable;
     [SerializeField]private GameObject hitParticles;
+    [SerializeField]private GameObject pauseMenu;
 
     [Header("Movement")]
     [SerializeField]private float movementAcceleration = 10f;
