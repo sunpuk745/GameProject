@@ -20,6 +20,8 @@ public class E2_RangeAttackState : RangeAttackState
     {
         base.Enter();
 
+        AudioManager.Instance.PlaySFX("IceForm");
+
         magicScript.FireMagic(stateData.MagicDamage);
     }
 

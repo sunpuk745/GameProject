@@ -19,6 +19,12 @@ public class E3_MoveState : MoveState
         {
             enemy.canUseSpecialAttack = true;
         }
+
+        if (enemy.player.transform.position.x > enemy.aliveGameObject.transform.position.x && enemy.aliveGameObject.transform.localScale.x < 0 
+        || enemy.player.transform.position.x < enemy.aliveGameObject.transform.position.x && enemy.aliveGameObject.transform.localScale.x > 0)
+        {
+            entity.Flip();
+        }
     }
 
     public override void Enter()
@@ -39,13 +45,6 @@ public class E3_MoveState : MoveState
         {
             entity.SetVelocity(stateData.movementSpeed);
         }
-
-        if (enemy.player.transform.position.x > enemy.aliveGameObject.transform.position.x && enemy.aliveGameObject.transform.localScale.x < 0 
-        || enemy.player.transform.position.x < enemy.aliveGameObject.transform.position.x && enemy.aliveGameObject.transform.localScale.x > 0)
-        {
-            entity.Flip();
-        }
-
         
         if (isPlayerInSpecialSkillRange && enemy.canUseSpecialAttack)
         {

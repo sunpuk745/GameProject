@@ -24,6 +24,12 @@ public class E3_Move2State : MoveState
         {
             enemy.canUseWarpAttack = true;
         }
+
+        if (enemy.player.transform.position.x > enemy.aliveGameObject.transform.position.x && enemy.aliveGameObject.transform.localScale.x < 0 
+        || enemy.player.transform.position.x < enemy.aliveGameObject.transform.position.x && enemy.aliveGameObject.transform.localScale.x > 0)
+        {
+            entity.Flip();
+        }
     }
 
     public override void Enter()
@@ -43,12 +49,6 @@ public class E3_Move2State : MoveState
         if (DetectPlayerInRange)
         {
             entity.SetVelocity(stateData.movementSpeed);
-        }
-
-        if (enemy.player.transform.position.x > enemy.aliveGameObject.transform.position.x && enemy.aliveGameObject.transform.localScale.x < 0 
-        || enemy.player.transform.position.x < enemy.aliveGameObject.transform.position.x && enemy.aliveGameObject.transform.localScale.x > 0)
-        {
-            entity.Flip();
         }
 
         if (isPlayerInSpecialSkillRange && enemy.canUseSpecialAttack)

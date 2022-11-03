@@ -27,6 +27,8 @@ public class FleeState : State
     {
         base.Enter();
 
+        AudioManager.Instance.PlaySFX("WitchMove");
+
         isFleeTimeOver = false;
         entity.Flip();
         entity.SetVelocity(stateData.fleeSpeed);

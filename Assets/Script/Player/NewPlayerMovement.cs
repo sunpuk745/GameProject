@@ -142,7 +142,7 @@ public class NewPlayerMovement : MonoBehaviour
                 Turn();
             }
         
-        if (isAttacking)
+        if (isAttacking && !isKnockback)
         {
             rb.velocity = new Vector2(0, 0);
         }
@@ -177,6 +177,7 @@ public class NewPlayerMovement : MonoBehaviour
     // Jump
     private void Jump()
     {
+        AudioManager.Instance.PlaySFX("Jump");
         rb.velocity = new Vector2(rb.velocity.x , 0f);
         rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         
@@ -243,6 +244,7 @@ public class NewPlayerMovement : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
                 isAttacking = true;
+                AudioManager.Instance.PlaySFX("Slash");
                 animator.SetTrigger("Attack");
             }
         }
@@ -275,6 +277,8 @@ public class NewPlayerMovement : MonoBehaviour
     private void Damage(AttackDetails attackDetails)
     {
         gameManager.DecreaseHP(attackDetails.damageAmount);
+
+        AudioManager.Instance.PlaySFX("PlayerHit");
 
         Instantiate(hitParticles, transform.position, Quaternion.Euler(0f, 0f, Random.Range(0f, 360f)));
 

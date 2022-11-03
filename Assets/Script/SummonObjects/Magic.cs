@@ -55,6 +55,11 @@ public class Magic : MonoBehaviour
         isMagicFinished = true;
     }
 
+    public void PlayIceExplosionSound()
+    {
+        AudioManager.Instance.PlaySFX("IceExplosion");
+    }
+
     private void OnDrawGizmos() 
     {
         Gizmos.DrawWireSphere(damagePos.position, magicDamageRadius);

@@ -74,6 +74,16 @@ public class Airburst : MonoBehaviour
         isMagicFinished = true;
     }
 
+    public void PlayWindFormSound()
+    {
+        AudioManager.Instance.PlaySFX("WindForm");
+    }
+
+    public void PlayWindExplosionSound()
+    {
+        AudioManager.Instance.PlaySFX("WindExplosion");
+    }
+
     private void OnDrawGizmos() 
     {
         Gizmos.DrawWireSphere(pushPos.position, airPushRadius);

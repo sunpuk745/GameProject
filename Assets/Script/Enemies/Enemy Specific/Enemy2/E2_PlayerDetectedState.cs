@@ -14,11 +14,22 @@ public class E2_PlayerDetectedState : PlayerDetectedState
     public override void DoChecks()
     {
         base.DoChecks();
+
+        if (enemy.player.transform.position.x > enemy.aliveGameObject.transform.position.x && enemy.aliveGameObject.transform.localScale.x < 0 
+        || enemy.player.transform.position.x < enemy.aliveGameObject.transform.position.x && enemy.aliveGameObject.transform.localScale.x > 0)
+        {
+            entity.Flip();
+        }
     }
 
     public override void Enter()
     {
         base.Enter();
+
+        if (!isPlayerInFleeRange)
+        {
+            AudioManager.Instance.PlaySFX("WitchCharge");
+        }
         
         if (isPlayerInFleeRange && entity.currentHealth <= 50 && usePushMagic)
         {
@@ -42,12 +53,7 @@ public class E2_PlayerDetectedState : PlayerDetectedState
 
         stateData.distanceToPlayer = Vector2.Distance(enemy.transform.position, enemy.player.transform.position);
 
-        if (enemy.player.transform.position.x > enemy.aliveGameObject.transform.position.x && enemy.aliveGameObject.transform.localScale.x < 0 
-        || enemy.player.transform.position.x < enemy.aliveGameObject.transform.position.x && enemy.aliveGameObject.transform.localScale.x > 0)
-        {
-            entity.Flip();
-        }
-        else if (!DetectPlayerInRange)
+        if (!DetectPlayerInRange)
         {
             stateMachine.ChangeState(enemy.idleState);
         }

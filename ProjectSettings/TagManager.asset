@@ -10,6 +10,7 @@ TagManager:
   - Interactable
   - SceneChanger
   - NPC
+  - Ground
   layers:
   - Default
   - TransparentFX
