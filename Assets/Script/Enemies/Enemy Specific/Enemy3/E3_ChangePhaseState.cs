@@ -20,7 +20,7 @@ public class E3_ChangePhaseState : ChangePhaseState
     {
         base.Enter();
 
-        AudioManager.Instance.PlaySFX("E3ChangePhase");
+        AudioManager.Instance.PlaySFX("E3ChangePhase", 0.3f);
 
         entity.isImmortal = true;
         enemy.canUseSpecialAttack = false;
