@@ -1550,6 +1550,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -0.032000016
       objectReference: {fileID: 0}
+    - target: {fileID: 8518640515039964003, guid: 435e14656a2048c46a33e04d2e8ee51d, type: 3}
+      propertyPath: m_BoundingShape2D
+      value: 
+      objectReference: {fileID: 970086878}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 435e14656a2048c46a33e04d2e8ee51d, type: 3}
 --- !u!1 &947946059

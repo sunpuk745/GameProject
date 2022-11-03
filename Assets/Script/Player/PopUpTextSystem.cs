@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using TMPro;
 
 public class PopUpTextSystem : MonoBehaviour
 {
     private GameObject popUpBox;
     private TMP_Text popUpText;
-    private GameObject currentNpc;
+    public GameObject currentNpc;
 
     [SerializeField] private GameObject interactableSignal;
     [SerializeField] private AudioSource openSound;
@@ -15,13 +16,13 @@ public class PopUpTextSystem : MonoBehaviour
     void Update()
     {
         // Teleport
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            if (currentNpc != null)
-            {
-                PopUp();
-            }
-        }
+        // if (Input.GetKeyDown(KeyCode.E))
+        // {
+        //     if (currentNpc != null)
+        //     {
+        //         PopUp();
+        //     }
+        // }
     }
 
     public void PopUp()

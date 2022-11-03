@@ -833,7 +833,7 @@ GameObject:
   - component: {fileID: 203562968}
   m_Layer: 6
   m_Name: Ground
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25332,6 +25332,7 @@ GameObject:
   - component: {fileID: 4291212044481926616}
   - component: {fileID: 4291212044481926625}
   - component: {fileID: 4291212044481926624}
+  - component: {fileID: 4291212044481926626}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -30262,6 +30263,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 4291212044481926622}
+  popUpTextSystem: {fileID: 4291212044481926625}
   interactable: {fileID: 2955360058637711181}
   hitParticles: {fileID: 0}
   movementAcceleration: 75
@@ -30271,6 +30273,7 @@ MonoBehaviour:
   airDeceleration: 2.5
   fallMultiplier: 5
   lowJumpFallMultipier: 5
+  coyoteTime: 0.15
   attackCooldown: 0.5
   attackRange: 0.74
   attackDamage: 10
@@ -30512,8 +30515,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70a985aadffe7bf40876aa9be849e2a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentNpc: {fileID: 0}
   interactableSignal: {fileID: 2955360058637711181}
   openSound: {fileID: 212287876}
+--- !u!114 &4291212044481926626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2955360059351681770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: bb797dc9f5a29384690669c396cd557a, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!4 &6516210985905845648
 Transform:
   m_ObjectHideFlags: 0
