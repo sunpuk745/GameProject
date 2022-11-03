@@ -317,6 +317,11 @@ public class NewPlayerMovement : MonoBehaviour
         gameManager.RestartScene();
     }
 
+    private void PlayDeadSound()
+    {
+        AudioManager.Instance.PlaySFX("PlayerDie", 0.5f);
+    }
+
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(attackPos.position, attackRange);
