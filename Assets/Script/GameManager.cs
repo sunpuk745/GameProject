@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
+        currentHealth = playerMaxHP;
         var gameManagerNum = FindObjectsOfType<GameManager>().Length;
         if (gameManagerNum > 1)
         {
@@ -30,8 +31,10 @@ public class GameManager : MonoBehaviour
     {
         currentHealth = playerMaxHP;
     }
+
     private void Update()
     {
+        Debug.Log(currentHealth);
         Scene scene = SceneManager.GetActiveScene();
         if (scene.buildIndex == 0)
         {

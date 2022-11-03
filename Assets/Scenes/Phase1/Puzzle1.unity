@@ -25614,7 +25614,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destination: {fileID: 712375584}
-  destinationRoomNumber: 1
+  destinationRoomNumber: 3
 --- !u!1 &2131316727
 GameObject:
   m_ObjectHideFlags: 0
