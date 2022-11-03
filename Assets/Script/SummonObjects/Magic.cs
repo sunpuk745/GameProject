@@ -41,10 +41,10 @@ public class Magic : MonoBehaviour
 
     public void TriggerAttack()
     {
-        Collider2D magicHit = Physics2D.OverlapCircle(damagePos.position, magicDamageRadius, whatIsPlayer);
-        if (magicHit)
+        Collider2D[] magicHit = Physics2D.OverlapCircleAll(damagePos.position, magicDamageRadius, whatIsPlayer);
+        foreach (Collider2D collider in magicHit)
         {
-            magicHit.transform.SendMessage("Damage", attackDetails);
+            collider.transform.SendMessage("Damage", attackDetails);
         }
     }
 

@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59e1487f23d099d46a439b789daa72c2, type: 3}
   m_Name: E2_RangeAttackStateData
   m_EditorClassIdentifier: 
-  Magic: {fileID: 8168024694889188368, guid: 8b2289b7a414ab14db8d1da185773523, type: 3}
+  Magic: {fileID: 1085949951141037622, guid: 8b2289b7a414ab14db8d1da185773523, type: 3}
   MagicDamage: 20
   magicCooldown: 5
-  idleTimeBeforeChangeState: 2
+  idleTimeBeforeChangeState: 0.25
   projectileDamage: 20
   projectileSpeed: 12
   projectileTravelDistance: 10

@@ -42,7 +42,8 @@ public class GameManager : MonoBehaviour
             healthBar.SetActive(false);
         }
 
-        else{
+        else
+        {
             healthBar.SetActive(true);
         }
     }
