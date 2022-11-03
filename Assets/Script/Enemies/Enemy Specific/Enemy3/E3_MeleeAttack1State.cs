@@ -24,6 +24,8 @@ public class E3_MeleeAttack1State : MeleeAttackState
     public override void Enter()
     {
         base.Enter();
+
+        AudioManager.Instance.PlaySFX("E3Atk1");
     }
 
     public override void Exit()

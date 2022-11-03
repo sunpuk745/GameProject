@@ -19,6 +19,8 @@ public class E3_WarpAttackState : MeleeAttackState
     public override void Enter()
     {
         base.Enter();
+
+        AudioManager.Instance.PlaySFX("E3Warp");
     }
 
     public override void Exit()
