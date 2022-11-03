@@ -7,6 +7,7 @@ public class EnemyHealth : MonoBehaviour
 {
     public Image healthBar;
     [SerializeField]private Enemy2 enemy;
+    [SerializeField]private LevelLoader levelLoader;
 
     float health, maxHealth;
     float lerpSpeed;
@@ -22,6 +23,10 @@ public class EnemyHealth : MonoBehaviour
         lerpSpeed = 2f * Time.deltaTime;
 
         HealthBarFiller();
+        if (health <= 0)
+        {
+            levelLoader.LoadNextLevel();
+        }
     }
 
     public void HealthBarFiller()

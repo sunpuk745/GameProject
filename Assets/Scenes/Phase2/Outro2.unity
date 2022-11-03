@@ -1728,7 +1728,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: What a weird dream...
+  m_text: 'What a weird dream...
+
+    Well, at least It''s a good dream...'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3f956f36dee3c184c965cdc01e0ab6bc, type: 2}
   m_sharedMaterial: {fileID: -8546670933458444498, guid: 3f956f36dee3c184c965cdc01e0ab6bc, type: 2}

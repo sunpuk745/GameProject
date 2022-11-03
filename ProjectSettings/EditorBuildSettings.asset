@@ -44,4 +44,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Phase2/SecondBossRoom.unity
     guid: 50d0d75adf82c5844bc8d0a736517358
+  - enabled: 1
+    path: Assets/Scenes/Phase2/Outro2.unity
+    guid: 96db6a72dfbb50c49a86f6cfd39b48a9
   m_configObjects: {}

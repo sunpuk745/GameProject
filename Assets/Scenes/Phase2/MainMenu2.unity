@@ -1821,6 +1821,10 @@ PrefabInstance:
       propertyPath: loadSceneNumber
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 3300259213087624815, guid: d6201ecf91c1e494aa1da92697cb8288, type: 3}
+      propertyPath: fadeInSoundVolume
+      value: 0.02
+      objectReference: {fileID: 0}
     - target: {fileID: 4822024446484463336, guid: d6201ecf91c1e494aa1da92697cb8288, type: 3}
       propertyPath: m_Name
       value: LevelLoader
