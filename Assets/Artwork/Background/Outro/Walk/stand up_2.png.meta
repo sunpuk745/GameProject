@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6ae08b776a6099349aa4aaf299037b0d
+guid: a7efd1326146ee049a2cecdc21f18bd0
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -105,211 +105,85 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: walk_9_0
+      name: stand up_2_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 500
         height: 206
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.16, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0b06afda7b798eb4abff88dc95e6e4ab
-      internalID: -174736908
+      spriteID: e2b4d8c52ff46a446a0a7452883bb73a
+      internalID: 630787522
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: walk_9_1
+      name: stand up_2_1
       rect:
         serializedVersion: 2
         x: 500
         y: 0
         width: 500
         height: 206
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.16, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ebe2969eac4ac2f488f8d45b54235f74
-      internalID: 223508513
+      spriteID: f966ffbb69532fb40a6b32dbe0ab2797
+      internalID: -2143683997
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: walk_9_2
+      name: stand up_2_2
       rect:
         serializedVersion: 2
         x: 1000
         y: 0
         width: 500
         height: 206
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.16, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9794ffa139f1a5743a8df1436df7e569
-      internalID: 394067247
+      spriteID: 5924d84a5e6c33740a9e90549481bd9d
+      internalID: -755686467
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: walk_9_3
+      name: stand up_2_3
       rect:
         serializedVersion: 2
         x: 1500
         y: 0
         width: 500
         height: 206
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.16, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 19ebb38ac5b7abc41a1dc9992054f608
-      internalID: -316309570
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: walk_9_4
-      rect:
-        serializedVersion: 2
-        x: 2000
-        y: 0
-        width: 500
-        height: 206
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f78cbc20032a5e147ba6618317bdd162
-      internalID: 1154212833
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: walk_9_5
-      rect:
-        serializedVersion: 2
-        x: 2500
-        y: 0
-        width: 500
-        height: 206
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 43e18ae820949c7439c98356ed22575c
-      internalID: 1103286919
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: walk_9_6
-      rect:
-        serializedVersion: 2
-        x: 3000
-        y: 0
-        width: 500
-        height: 206
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9b1943ea5207de74390f39d673853784
-      internalID: -244027264
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: walk_9_7
-      rect:
-        serializedVersion: 2
-        x: 3500
-        y: 0
-        width: 500
-        height: 206
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 60b74ee1b389ffd4b8e0cb12986f7ce2
-      internalID: 908502075
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: walk_9_8
-      rect:
-        serializedVersion: 2
-        x: 4000
-        y: 0
-        width: 500
-        height: 206
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4562d1f563e853c44be1366c07662dda
-      internalID: 1415957782
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: walk_9_9
-      rect:
-        serializedVersion: 2
-        x: 4500
-        y: 0
-        width: 500
-        height: 206
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ece9b68ab58cebe4d9f3163f035ec385
-      internalID: -1430226316
+      spriteID: 8283f3e5ec61c1c4fb4bacedf3e5c125
+      internalID: 1094660930
       vertices: []
       indices: 
       edges: []
@@ -325,16 +199,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      walk_9_8: 1415957782
-      walk_9_7: 908502075
-      walk_9_6: -244027264
-      walk_9_3: -316309570
-      walk_9_4: 1154212833
-      walk_9_1: 223508513
-      walk_9_0: -174736908
-      walk_9_9: -1430226316
-      walk_9_5: 1103286919
-      walk_9_2: 394067247
+      stand up_2_3: 1094660930
+      stand up_2_1: -2143683997
+      stand up_2_2: -755686467
+      stand up_2_0: 630787522
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

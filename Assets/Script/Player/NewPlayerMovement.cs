@@ -41,7 +41,6 @@ public class NewPlayerMovement : MonoBehaviour
     private float attackingTime;
     //private int attackedDirection;
     private bool isAttacking;
-    private bool isDead;
     private AttackDetails attackDetails;
     [SerializeField] private Transform attackPos;
     [Space(10)]
@@ -329,7 +328,7 @@ public class NewPlayerMovement : MonoBehaviour
 
         if (collision.CompareTag("Hazard")) 
         {
-            Debug.Log("Player Hit");
+            gameManager.DecreaseHP(100);
         }
     }
 

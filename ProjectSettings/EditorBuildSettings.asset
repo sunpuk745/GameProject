@@ -27,6 +27,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Phase1/FirstBoss_Cutscene_End.unity
     guid: 6e0eafeab61c9b84cba8c9b9135bb934
   - enabled: 1
+    path: Assets/Scenes/Phase1/Outro.unity
+    guid: 9bf4e9f6c6816a044a9275ca42686ce2
+  - enabled: 1
     path: Assets/Scenes/Phase2/MainMenu2.unity
     guid: b63e4275b9d89734985c8d8290da7fc9
   - enabled: 1
