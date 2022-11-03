@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Magic: {fileID: 4618986081802347823, guid: 31e2e0f06e6ac81438fb3b934da5c0f6, type: 3}
   MagicDamage: 0
-  magicCooldown: 10
-  idleTimeBeforeChangeState: 1
+  magicCooldown: 3
+  idleTimeBeforeChangeState: 0.25
   projectileDamage: 20
   projectileSpeed: 12
   projectileTravelDistance: 10
   magicSpawnOffset: {x: 0, y: 0, z: 0}
+  magicSpawnOffset2: {x: 0, y: 0, z: 0}
+  magicSpawnOffset3: {x: 0, y: 0, z: 0}

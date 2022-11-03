@@ -8,6 +8,7 @@ public class Magic : MonoBehaviour
 
     private float startXPos;
     private float startYPos;
+    private float damage = 20f;
     [SerializeField] private float magicDamageRadius;
 
     private bool isCasted;
@@ -23,6 +24,8 @@ public class Magic : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         isMagicFinished = false;
+
+        FireMagic(damage);
 
         startXPos = transform.position.x;
         startYPos = transform.position.y;

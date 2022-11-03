@@ -31,7 +31,7 @@ public class E2_PlayerDetectedState : PlayerDetectedState
             AudioManager.Instance.PlaySFX("WitchCharge", 0.3f);
         }
         
-        if (isPlayerInFleeRange && entity.currentHealth <= 50 && usePushMagic)
+        if (isPlayerInFleeRange && entity.currentHealth <= 80 && usePushMagic)
         {
             usePushMagic = false;
             stateMachine.ChangeState(enemy.rangePushState);

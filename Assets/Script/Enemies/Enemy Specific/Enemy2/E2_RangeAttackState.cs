@@ -22,7 +22,8 @@ public class E2_RangeAttackState : RangeAttackState
 
         AudioManager.Instance.PlaySFX("IceForm");
 
-        magicScript.FireMagic(stateData.MagicDamage);
+        Magic = GameObject.Instantiate(stateData.Magic, attackPosition.position + stateData.magicSpawnOffset2, attackPosition.rotation);
+        Magic = GameObject.Instantiate(stateData.Magic, attackPosition.position + stateData.magicSpawnOffset3, attackPosition.rotation);
     }
 
     public override void Exit()

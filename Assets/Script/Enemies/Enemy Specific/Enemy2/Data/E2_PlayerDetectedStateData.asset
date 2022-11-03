@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: E2_PlayerDetectedStateData
   m_EditorClassIdentifier: 
   longRangeActionTime: 1.5
-  magicCastTime: 2
-  distanceToPlayer: 10.111876
+  magicCastTime: 0.5
+  distanceToPlayer: 8.190442

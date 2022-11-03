@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b045fb9cc0d966545ae6de31f711376e, type: 3}
   m_Name: E2_BaseData
   m_EditorClassIdentifier: 
-  maxHealth: 30
-  DamageKnockSpeed: 3
+  maxHealth: 120
+  DamageKnockSpeed: 0
   wallCheckDistance: 0.5
   ledgeCheckDistance: 0.4
   groundCheckRadius: 0.3
   minAggroDistance: 3
   maxAggroDistance: 3
   gizmoColor: {r: 0, g: 1, b: 0, a: 0.14117648}
-  playerDetectRange: {x: 40, y: 12}
+  playerDetectRange: {x: 20, y: 12}
   playerCheckOffset: {x: 0, y: 4}
   gizmoFleeColor: {r: 1, g: 0, b: 0, a: 0.44705883}
   playerFleeRange: {x: 7, y: 5}
