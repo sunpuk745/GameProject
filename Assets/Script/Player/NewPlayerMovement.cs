@@ -124,7 +124,7 @@ public class NewPlayerMovement : MonoBehaviour
     // Move
     private void Move()
     {
-        if (canMove && !isAttacking && !isKnockback)
+        if (canMove && !isAttacking && !isKnockback && !gameManager.isDead)
         {
             rb.AddForce(new Vector2(horizontalDirection, 0f) * movementAcceleration);
             if (Mathf.Abs(rb.velocity.x) > maxMoveSpeed)
@@ -139,11 +139,11 @@ public class NewPlayerMovement : MonoBehaviour
             }
             
         }
-        if(horizontalDirection > 0 && !IsFacingRight && !isAttacking && !isKnockback)
+        if(horizontalDirection > 0 && !IsFacingRight && !isAttacking && !isKnockback && !gameManager.isDead)
             {
                 Turn();
             }
-            if(horizontalDirection < 0 && IsFacingRight && !isAttacking && !isKnockback)
+        else if(horizontalDirection < 0 && IsFacingRight && !isAttacking && !isKnockback && !gameManager.isDead)
             {
                 Turn();
             }
@@ -209,7 +209,8 @@ public class NewPlayerMovement : MonoBehaviour
     private void CheckCollision()
     {
         onGround = Physics2D.OverlapBox(groundCheckPoint.position, groundCheckSize, 0, groundLayer);
-        if (onGround){
+        if (onGround)
+        {
             animator.SetBool("IsJumping", false);
         }
         

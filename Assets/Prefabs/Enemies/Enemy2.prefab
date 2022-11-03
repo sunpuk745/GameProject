@@ -354,6 +354,7 @@ MonoBehaviour:
   fleeStateData: {fileID: 11400000, guid: 49ef633cc9ea9a541abbbee21497c2e7, type: 2}
   rangeAttackStateData: {fileID: 11400000, guid: 57ea023ebd9ca4b498108f0cbac452cc, type: 2}
   warpStateData: {fileID: 11400000, guid: f47f472c40a732d46aaf3f604fbf2952, type: 2}
+  deadStateData: {fileID: 11400000, guid: 071660619b6ee4d43b459a99bd219e60, type: 2}
   rangePushStateData: {fileID: 11400000, guid: c447a585323e1c64aabfd9ba7bbe6880, type: 2}
   player: {fileID: 3933695583077726059, guid: 435e14656a2048c46a33e04d2e8ee51d, type: 3}
   hitParticles: {fileID: 57238422797797938, guid: 450046f32333fb4469b0e2231be81c13, type: 3}

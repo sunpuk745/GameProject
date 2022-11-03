@@ -14,6 +14,7 @@ public class Enemy3 : Entity
     public E3_SpecialAttackPhase2State specialAttackPhase2State { get; private set; }
     public E3_ChangePhaseState changePhaseState { get; private set; }
     public E3_WarpAttackState warpAttackState { get; private set; }
+    public E3_DeadState deadState { get; private set; }
 
     [SerializeField]private Data_MoveState moveStateData;
     [SerializeField]private Data_MoveState move2StateData;
@@ -22,6 +23,7 @@ public class Enemy3 : Entity
     [SerializeField]private Data_MeleeAttackState meleeAttack2Phase2StateData;
     [SerializeField]private Data_MeleeAttackState meleeAttack2StateData;
     [SerializeField]private Data_ChangePhaseState changePhaseStateData;
+    [SerializeField]private Data_DeadState deadStateData;
 
     public Data_MeleeAttackState specialAttackStateData;
     public Data_MeleeAttackState specialAttackPhase2StateData;
@@ -57,6 +59,7 @@ public class Enemy3 : Entity
         specialAttackPhase2State = new E3_SpecialAttackPhase2State(this, stateMachine, "specialAtkPhase2", specialAttackPos, specialAttackPhase2StateData, this);
         changePhaseState = new E3_ChangePhaseState(this, stateMachine, "changePhase", changePhaseStateData, this);
         warpAttackState = new E3_WarpAttackState(this, stateMachine, "warpAtk", meleeAttack1Pos, warpAttackStateData, this);
+        deadState = new E3_DeadState(this, stateMachine, "dead", deadStateData, this);
 
         stateMachine.Initialize(moveState);
         canUseWarpAttack = false;
@@ -68,7 +71,7 @@ public class Enemy3 : Entity
     {
         base.Damage(attackDetails);
 
-        if (!isImmortal)
+        if (!isImmortal && !isDead)
         {
             if (!alreadyChangedPhase)
             {
@@ -84,6 +87,11 @@ public class Enemy3 : Entity
         {
             alreadyChangedPhase = true;
             stateMachine.ChangeState(changePhaseState);
+        }
+
+        if (isDead)
+        {
+            stateMachine.ChangeState(deadState);
         }
     }
 

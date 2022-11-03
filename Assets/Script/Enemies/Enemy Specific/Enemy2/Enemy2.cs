@@ -10,12 +10,14 @@ public class Enemy2 : Entity
     public E2_RangeAttackState rangeAttackState { get; private set; }
     public E2_RangePushState rangePushState { get; private set; }
     public E2_WarpState warpState { get; private set; }
+    public E2_DeadState deadState { get; private set; }
 
     [SerializeField]private Data_IdleState idleStateData;
     [SerializeField]private Data_PlayerDetected playerDetectedStateData;
     [SerializeField]private Data_FleeState fleeStateData;
     [SerializeField]private Data_RangeAttackState rangeAttackStateData;
     [SerializeField]private Data_MeleeAttackState warpStateData;
+    [SerializeField]private Data_DeadState deadStateData;
     public Data_RangeAttackState rangePushStateData;
 
     public GameObject player;
@@ -36,6 +38,7 @@ public class Enemy2 : Entity
         rangeAttackState = new E2_RangeAttackState(this, stateMachine, "rangeAttack", rangeAttackPos ,rangeAttackStateData, this);
         rangePushState = new E2_RangePushState(this, stateMachine, "pushAttack", pushAttackPos, rangePushStateData, this);
         warpState = new E2_WarpState(this, stateMachine, "warp", player.transform, warpStateData, this);
+        deadState = new E2_DeadState(this, stateMachine, "dead", deadStateData, this);
 
         stateMachine.Initialize(idleState);
     }
@@ -44,9 +47,14 @@ public class Enemy2 : Entity
     {
         base.Damage(attackDetails);
 
-        if (!isImmortal)
+        if (!isImmortal && !isDead)
         {
             Instantiate(hitParticles, aliveGameObject.transform.position, Quaternion.Euler(0f, 0f, Random.Range(0f, 360f)));
+        }
+
+        if (isDead)
+        {
+            stateMachine.ChangeState(deadState);
         }
     }
 }
