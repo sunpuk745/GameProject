@@ -41,6 +41,7 @@ public class NewPlayerMovement : MonoBehaviour
     private float attackingTime;
     //private int attackedDirection;
     private bool isAttacking;
+    private bool isDead;
     private AttackDetails attackDetails;
     [SerializeField] private Transform attackPos;
     [Space(10)]
@@ -103,6 +104,11 @@ public class NewPlayerMovement : MonoBehaviour
             ApplyAirDeceleration();
             FallMultiplier();
         }
+
+        if (gameManager.currentHealth <= 0)
+        {
+            animator.SetTrigger("isDead");
+        }
     }
 
     private void FixedUpdate() 
@@ -142,7 +148,7 @@ public class NewPlayerMovement : MonoBehaviour
                 Turn();
             }
         
-        if (isAttacking && !isKnockback)
+        if (isAttacking && !isKnockback || gameManager.isDead)
         {
             rb.velocity = new Vector2(0, 0);
         }
@@ -276,22 +282,14 @@ public class NewPlayerMovement : MonoBehaviour
     //Take damage
     private void Damage(AttackDetails attackDetails)
     {
-        gameManager.DecreaseHP(attackDetails.damageAmount);
+        if (!gameManager.isDead && gameManager.currentHealth > 0)
+        {
+            gameManager.DecreaseHP(attackDetails.damageAmount);
 
-        AudioManager.Instance.PlaySFX("PlayerHit");
+            AudioManager.Instance.PlaySFX("PlayerHit");
 
-        Instantiate(hitParticles, transform.position, Quaternion.Euler(0f, 0f, Random.Range(0f, 360f)));
-
-        // if (attackDetails.position.x < transform.position.x)
-        // {
-        //     attackedDirection = 1;
-        // }
-        // else
-        // {
-        //     attackedDirection = -1;
-        // }
-
-        //Knockback(attackedDirection);
+            Instantiate(hitParticles, transform.position, Quaternion.Euler(0f, 0f, Random.Range(0f, 360f)));
+        }
     }
 
     public void Knockback(int direction, float knockDistance)
@@ -308,6 +306,11 @@ public class NewPlayerMovement : MonoBehaviour
             isKnockback = false;
             rb.velocity = new Vector2(0f, rb.velocity.y);
         }
+    }
+
+    private void TriggerRestartSceneAfterDead()
+    {
+        gameManager.RestartScene();
     }
 
     private void OnDrawGizmos()
